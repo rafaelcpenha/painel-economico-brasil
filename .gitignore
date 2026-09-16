@@ -1,0 +1,31 @@
+# ---------- Python / Anaconda ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# ---------- VS Code ----------
+.vscode/
+!.vscode/extensions.json
+
+# ---------- Sistema operacional ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- Segredos (NUNCA commitar) ----------
+.env
+.env.*
+*.key
+secrets.json
+
+# ---------- Dados brutos pesados (não versionar) ----------
+data/raw/
+*.csv.gz
+*.parquet
+
+# ---------- Logs ----------
+*.log

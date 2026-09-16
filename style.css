@@ -1,0 +1,164 @@
+/* =========================================================
+   Painel Econômico — Folha de estilos principal
+   Paleta: azuis profundos, cinzas azulados, acentos claros
+   ========================================================= */
+
+/* ---------- 1. Variáveis globais (design tokens) ---------- */
+:root {
+  /* Cores de fundo */
+  --cor-fundo:            #0a1929;  /* azul quase preto */
+  --cor-superficie:       #102a43;  /* cards, cabeçalho */
+  --cor-superficie-alta:  #1a3a5c;  /* hover, destaque */
+
+  /* Cores de texto */
+  --cor-texto:            #e6f1ff;  /* branco levemente azulado */
+  --cor-texto-suave:      #8892b0;  /* cinza azulado */
+  --cor-texto-fraco:      #5a6a85;  /* cinza mais apagado */
+
+  /* Acentos */
+  --cor-acento:           #4fc3f7;  /* azul claro */
+  --cor-acento-suave:     #64ffda;  /* turquesa sutil */
+
+  /* Tipografia */
+  --fonte-padrao: system-ui, -apple-system, "Segoe UI", Roboto,
+                  "Helvetica Neue", Arial, sans-serif;
+  --tamanho-base: 16px;
+  --altura-linha: 1.6;
+
+  /* Espaçamento */
+  --espaco-xs: 0.5rem;
+  --espaco-sm: 1rem;
+  --espaco-md: 1.5rem;
+  --espaco-lg: 2.5rem;
+  --espaco-xl: 4rem;
+
+  /* Arredondamento */
+  --raio-sm: 6px;
+  --raio-md: 10px;
+
+  /* Sombra */
+  --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- 2. Reset leve ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- 3. Estilo base ---------- */
+body {
+  font-family: var(--fonte-padrao);
+  font-size: var(--tamanho-base);
+  line-height: var(--altura-linha);
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- 4. Links ---------- */
+a {
+  color: var(--cor-acento);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--cor-acento-suave);
+  text-decoration: underline;
+}
+
+/* ---------- 5. Cabeçalho ---------- */
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--espaco-sm) var(--espaco-lg);
+  background-color: var(--cor-superficie);
+  border-bottom: 1px solid var(--cor-superficie-alta);
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--cor-texto);
+  letter-spacing: 0.02em;
+}
+
+.versao {
+  font-size: 0.8rem;
+  color: var(--cor-texto-fraco);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* ---------- 6. Conteúdo principal ---------- */
+.conteudo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaco-xl) var(--espaco-lg);
+}
+
+.hero {
+  max-width: 720px;
+  text-align: center;
+}
+
+.hero-titulo {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  margin: 0 0 var(--espaco-md);
+  color: var(--cor-texto);
+  line-height: 1.2;
+}
+
+.hero-subtitulo {
+  font-size: 1.05rem;
+  color: var(--cor-texto-suave);
+  margin: 0 0 var(--espaco-lg);
+}
+
+.hero-nota {
+  font-size: 0.85rem;
+  color: var(--cor-texto-fraco);
+  padding-top: var(--espaco-md);
+  border-top: 1px solid var(--cor-superficie-alta);
+  display: inline-block;
+  padding-left: var(--espaco-md);
+  padding-right: var(--espaco-md);
+}
+
+/* ---------- 7. Rodapé ---------- */
+.rodape {
+  padding: var(--espaco-md) var(--espaco-lg);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--cor-texto-fraco);
+  border-top: 1px solid var(--cor-superficie-alta);
+}
+
+.rodape p {
+  margin: 0;
+}
+
+/* ---------- 8. Responsividade ---------- */
+@media (max-width: 600px) {
+  .cabecalho {
+    padding: var(--espaco-sm);
+  }
+  .conteudo {
+    padding: var(--espaco-lg) var(--espaco-sm);
+  }
+}
