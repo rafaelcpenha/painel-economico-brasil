@@ -6,27 +6,29 @@
 /* ---------- 1. Design tokens ---------- */
 :root {
   /* Cores de fundo */
-  --cor-fundo:            #0a1929;
-  --cor-superficie:       #102a43;
-  --cor-superficie-alta:  #1a3a5c;
-  --cor-borda:            #234e70;
+  --cor-fundo: #0a1929;
+  --cor-superficie: #102a43;
+  --cor-superficie-alta: #1a3a5c;
+  --cor-borda: #234e70;
 
   /* Cores de texto */
-  --cor-texto:            #e6f1ff;
-  --cor-texto-suave:      #8892b0;
-  --cor-texto-fraco:      #5a6a85;
+  --cor-texto: #e6f1ff;
+  --cor-texto-suave: #8892b0;
+  --cor-texto-fraco: #5a6a85;
 
   /* Acentos */
-  --cor-acento:           #4fc3f7;
-  --cor-acento-suave:     #64ffda;
+  --cor-acento: #4fc3f7;
+  --cor-acento-suave: #64ffda;
 
   /* Semânticas (alta = ruim para inflação/juros, mas bom para PIB) */
-  --cor-alta:             #f87171;  /* vermelho suave */
-  --cor-baixa:            #4ade80;  /* verde suave */
+  --cor-alta: #f87171;
+  /* vermelho suave */
+  --cor-baixa: #4ade80;
+  /* verde suave */
 
   /* Tipografia */
   --fonte-padrao: system-ui, -apple-system, "Segoe UI", Roboto,
-                  "Helvetica Neue", Arial, sans-serif;
+    "Helvetica Neue", Arial, sans-serif;
   --fonte-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --tamanho-base: 16px;
   --altura-linha: 1.6;
@@ -55,7 +57,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -169,9 +172,17 @@ a:hover {
 }
 
 @keyframes pulso {
-  0%   { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.5); }
-  70%  { box-shadow: 0 0 0 8px rgba(100, 255, 218, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.5);
+  }
+
+  70% {
+    box-shadow: 0 0 0 8px rgba(100, 255, 218, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+  }
 }
 
 .status-versao {
@@ -316,8 +327,13 @@ a:hover {
 }
 
 /* Reduz o espaço quando duas seções se seguem */
-.secao-grupo + .secao-grupo {
+.secao-grupo+.secao-grupo {
   margin-top: 0;
+}
+
+/* ---------- 9.c Proteção contra títulos vazios ---------- */
+.grupo-titulo:empty {
+  display: none;
 }
 
 /* ---------- 11. Responsividade fina ---------- */
@@ -326,13 +342,16 @@ a:hover {
     padding: var(--espaco-sm);
     justify-content: center;
   }
+
   .conteudo {
     padding: var(--espaco-md) var(--espaco-sm) var(--espaco-lg);
   }
+
   .faixa-status {
     padding: 10px var(--espaco-sm);
     font-size: 0.78rem;
   }
+
   .card-valor {
     font-size: 1.6rem;
   }

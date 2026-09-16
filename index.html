@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Painel de indicadores econômicos do Brasil: juros, câmbio, PIB, desemprego, crédito e mais.">
+  <meta name="description"
+    content="Painel de indicadores econômicos do Brasil: juros, câmbio, PIB, desemprego, crédito e mais.">
   <title>Painel Econômico Brasil</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- ========== Cabeçalho fixo ========== -->
@@ -30,171 +33,44 @@
     </span>
   </div>
 
+
   <!-- ========== Conteúdo principal ========== -->
-    <!-- ========== Conteúdo principal ========== -->
   <main class="conteudo">
 
     <section class="secao-painel">
       <h2 class="secao-titulo">Indicadores principais</h2>
 
-      <!-- ===== Seção: Política Monetária e Preços ===== -->
-      <section class="secao-grupo">
-        <h3 class="grupo-titulo">Política Monetária e Preços</h3>
-        <div class="grade-cards">
+      <!-- Cada section abaixo será preenchida pelo JavaScript.
+           data-secao corresponde ao id da seção em dados.json. -->
 
-          <article class="card">
-            <h3 class="card-titulo">Taxa Selic</h3>
-            <p class="card-valor">10,75<span class="card-unidade">% a.a.</span></p>
-            <p class="card-variacao card-variacao-baixa">▼ 0,50 p.p.</p>
-            <p class="card-periodo">Set/2026</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-titulo">IPCA (12 meses)</h3>
-            <p class="card-valor">4,20<span class="card-unidade">%</span></p>
-            <p class="card-variacao card-variacao-baixa">▼ 0,15 p.p.</p>
-            <p class="card-periodo">Ago/2026</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-titulo">Câmbio (USD/BRL)</h3>
-            <p class="card-valor">5,42<span class="card-unidade">R$</span></p>
-            <p class="card-variacao card-variacao-alta">▲ 0,08</p>
-            <p class="card-periodo">16/09/2026</p>
-          </article>
-
-        </div>
+      <section class="secao-grupo" data-secao="politica-monetaria">
+        <h3 class="grupo-titulo"></h3>
+        <div class="grade-cards"></div>
       </section>
 
-      <!-- ===== Seção: Atividade Econômica ===== -->
-      <section class="secao-grupo">
-        <h3 class="grupo-titulo">Atividade Econômica</h3>
-        <div class="grade-cards">
-
-          <article class="card">
-            <h3 class="card-titulo">PIB — Ótica da Demanda</h3>
-            <p class="card-valor">+2,10<span class="card-unidade">% a.a.</span></p>
-            <p class="card-variacao card-variacao-alta">▲ 0,30 p.p.</p>
-            <p class="card-periodo">2º tri/2026</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-titulo">PIB — Ótica da Oferta</h3>
-            <p class="card-valor">+2,05<span class="card-unidade">% a.a.</span></p>
-            <p class="card-variacao card-variacao-alta">▲ 0,25 p.p.</p>
-            <p class="card-periodo">2º tri/2026</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-titulo">Investimento (FBCF)</h3>
-            <p class="card-valor">17,2<span class="card-unidade">% PIB</span></p>
-            <p class="card-variacao card-variacao-baixa">▼ 0,20 p.p.</p>
-            <p class="card-periodo">2º tri/2026</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-titulo">Consumo das Famílias</h3>
-            <p class="card-valor">+3,40<span class="card-unidade">% a.a.</span></p>
-            <p class="card-variacao card-variacao-alta">▲ 0,10 p.p.</p>
-            <p class="card-periodo">2º tri/2026</p>
-          </article>
-
-        </div>
+      <section class="secao-grupo" data-secao="atividade">
+        <h3 class="grupo-titulo"></h3>
+        <div class="grade-cards"></div>
       </section>
 
-      <!-- ===== Seção: Crédito e Endividamento ===== -->
-      <section class="secao-grupo">
-        <h3 class="grupo-titulo">Crédito e Endividamento</h3>
-        <div class="grade-cards">
-
-          <article class="card">
-            <h3 class="card-titulo">Crédito Total</h3>
-            <p class="card-valor">52,8<span class="card-unidade">% PIB</span></p>
-            <p class="card-variacao card-variacao-alta">▲ 0,40 p.p.</p>
-            <p class="card-periodo">Jul/2026</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-titulo">Endividamento das Famílias</h3>
-            <p class="card-valor">48,5<span class="card-unidade">% renda</span></p>
-            <p class="card-variacao card-variacao-alta">▲ 0,30 p.p.</p>
-            <p class="card-periodo">Jul/2026</p>
-          </article>
-
-        </div>
+      <section class="secao-grupo" data-secao="credito">
+        <h3 class="grupo-titulo"></h3>
+        <div class="grade-cards"></div>
       </section>
 
-      <!-- ===== Seção: Mercado de Trabalho ===== -->
-      <section class="secao-grupo">
-        <h3 class="grupo-titulo">Mercado de Trabalho</h3>
-        <div class="grade-cards">
-
-          <article class="card">
-            <h3 class="card-titulo">Taxa de Desemprego</h3>
-            <p class="card-valor">6,80<span class="card-unidade">%</span></p>
-            <p class="card-variacao card-variacao-baixa">▼ 0,20 p.p.</p>
-            <p class="card-periodo">Jul/2026</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-titulo">População Economicamente Ativa</h3>
-            <p class="card-valor">105,3<span class="card-unidade">milhões</span></p>
-            <p class="card-variacao card-variacao-alta">▲ 0,15%</p>
-            <p class="card-periodo">Jul/2026</p>
-          </article>
-
-        </div>
+      <section class="secao-grupo" data-secao="trabalho">
+        <h3 class="grupo-titulo"></h3>
+        <div class="grade-cards"></div>
       </section>
 
-      <!-- ===== Seção: Setor Público ===== -->
-      <section class="secao-grupo">
-        <h3 class="grupo-titulo">Setor Público</h3>
-        <div class="grade-cards">
-
-          <article class="card">
-            <h3 class="card-titulo">Gasto Público (União)</h3>
-            <p class="card-valor">19,4<span class="card-unidade">% PIB</span></p>
-            <p class="card-variacao card-variacao-baixa">▼ 0,10 p.p.</p>
-            <p class="card-periodo">Ago/2026</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-titulo">Resultado Primário</h3>
-            <p class="card-valor">−0,45<span class="card-unidade">% PIB</span></p>
-            <p class="card-variacao card-variacao-alta">▲ 0,05 p.p.</p>
-            <p class="card-periodo">Ago/2026</p>
-          </article>
-
-        </div>
+      <section class="secao-grupo" data-secao="setor-publico">
+        <h3 class="grupo-titulo"></h3>
+        <div class="grade-cards"></div>
       </section>
 
-      <!-- ===== Seção: Comércio Exterior ===== -->
-      <section class="secao-grupo">
-        <h3 class="grupo-titulo">Comércio Exterior</h3>
-        <div class="grade-cards">
-
-          <article class="card">
-            <h3 class="card-titulo">Exportações</h3>
-            <p class="card-valor">30,5<span class="card-unidade">US$ bi</span></p>
-            <p class="card-variacao card-variacao-alta">▲ 4,2%</p>
-            <p class="card-periodo">Ago/2026</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-titulo">Importações</h3>
-            <p class="card-valor">22,1<span class="card-unidade">US$ bi</span></p>
-            <p class="card-variacao card-variacao-alta">▲ 6,8%</p>
-            <p class="card-periodo">Ago/2026</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-titulo">Saldo Comercial</h3>
-            <p class="card-valor">+8,4<span class="card-unidade">US$ bi</span></p>
-            <p class="card-variacao card-variacao-baixa">▼ 1,1%</p>
-            <p class="card-periodo">Ago/2026</p>
-          </article>
-
-        </div>
+      <section class="secao-grupo" data-secao="comercio">
+        <h3 class="grupo-titulo"></h3>
+        <div class="grade-cards"></div>
       </section>
 
     </section>
@@ -213,5 +89,9 @@
     </p>
   </footer>
 
+  <!-- Script principal -->
+  <script src="script.js"></script>
+
 </body>
+
 </html>
