@@ -62,13 +62,14 @@ As versões seguintes integrarão dados reais de fontes oficiais.
 - JavaScript + Chart.js (visualizações)
 
 ## Estrutura do projeto
-painel-economico-brasil/
-├── index.html # Página principal com os cards
-├── style.css # Estilos e design tokens
-├── README.md # Este arquivo
-└── .gitignore # Arquivos ignorados pelo Git
 
-text
+```
+painel-economico-brasil/
+├── index.html      # Página principal com os cards
+├── style.css       # Estilos e design tokens
+├── README.md       # Este arquivo
+└── .gitignore      # Arquivos ignorados pelo Git
+```
 
 ## Autor
 
