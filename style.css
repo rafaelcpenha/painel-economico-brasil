@@ -1,27 +1,33 @@
 /* =========================================================
-   Painel Econômico — Folha de estilos principal
+   Painel Econômico Brasil — Folha de estilos principal
    Paleta: azuis profundos, cinzas azulados, acentos claros
    ========================================================= */
 
-/* ---------- 1. Variáveis globais (design tokens) ---------- */
+/* ---------- 1. Design tokens ---------- */
 :root {
   /* Cores de fundo */
-  --cor-fundo:            #0a1929;  /* azul quase preto */
-  --cor-superficie:       #102a43;  /* cards, cabeçalho */
-  --cor-superficie-alta:  #1a3a5c;  /* hover, destaque */
+  --cor-fundo:            #0a1929;
+  --cor-superficie:       #102a43;
+  --cor-superficie-alta:  #1a3a5c;
+  --cor-borda:            #234e70;
 
   /* Cores de texto */
-  --cor-texto:            #e6f1ff;  /* branco levemente azulado */
-  --cor-texto-suave:      #8892b0;  /* cinza azulado */
-  --cor-texto-fraco:      #5a6a85;  /* cinza mais apagado */
+  --cor-texto:            #e6f1ff;
+  --cor-texto-suave:      #8892b0;
+  --cor-texto-fraco:      #5a6a85;
 
   /* Acentos */
-  --cor-acento:           #4fc3f7;  /* azul claro */
-  --cor-acento-suave:     #64ffda;  /* turquesa sutil */
+  --cor-acento:           #4fc3f7;
+  --cor-acento-suave:     #64ffda;
+
+  /* Semânticas (alta = ruim para inflação/juros, mas bom para PIB) */
+  --cor-alta:             #f87171;  /* vermelho suave */
+  --cor-baixa:            #4ade80;  /* verde suave */
 
   /* Tipografia */
   --fonte-padrao: system-ui, -apple-system, "Segoe UI", Roboto,
                   "Helvetica Neue", Arial, sans-serif;
+  --fonte-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --tamanho-base: 16px;
   --altura-linha: 1.6;
 
@@ -35,9 +41,11 @@
   /* Arredondamento */
   --raio-sm: 6px;
   --raio-md: 10px;
+  --raio-lg: 14px;
 
-  /* Sombra */
-  --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.25);
+  /* Sombras */
+  --sombra-suave: 0 2px 6px rgba(0, 0, 0, 0.20);
+  --sombra-media: 0 6px 16px rgba(0, 0, 0, 0.30);
 }
 
 /* ---------- 2. Reset leve ---------- */
@@ -52,7 +60,7 @@ html, body {
   padding: 0;
 }
 
-/* ---------- 3. Estilo base ---------- */
+/* ---------- 3. Base ---------- */
 body {
   font-family: var(--fonte-padrao);
   font-size: var(--tamanho-base);
@@ -85,80 +93,247 @@ a:hover {
   justify-content: space-between;
   padding: var(--espaco-sm) var(--espaco-lg);
   background-color: var(--cor-superficie);
-  border-bottom: 1px solid var(--cor-superficie-alta);
+  border-bottom: 1px solid var(--cor-borda);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+  gap: var(--espaco-sm);
+}
+
+.cabecalho-marca {
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
   margin: 0;
   color: var(--cor-texto);
   letter-spacing: 0.02em;
 }
 
-.versao {
-  font-size: 0.8rem;
-  color: var(--cor-texto-fraco);
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+.logo-pais {
+  color: var(--cor-acento);
+  font-weight: 700;
 }
 
-/* ---------- 6. Conteúdo principal ---------- */
-.conteudo {
-  flex: 1;
+/* Navegação */
+.navegacao {
+  display: flex;
+  gap: var(--espaco-md);
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  border-radius: var(--raio-sm);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--cor-texto);
+  background-color: var(--cor-superficie-alta);
+  text-decoration: none;
+}
+
+.nav-link-ativo {
+  color: var(--cor-texto);
+  background-color: var(--cor-superficie-alta);
+}
+
+/* ---------- 6. Faixa de status ---------- */
+.faixa-status {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--espaco-xl) var(--espaco-lg);
-}
-
-.hero {
-  max-width: 720px;
+  gap: var(--espaco-xs);
+  padding: 10px var(--espaco-lg);
+  background-color: var(--cor-superficie);
+  border-bottom: 1px solid var(--cor-borda);
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
   text-align: center;
 }
 
-.hero-titulo {
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
-  font-weight: 700;
-  margin: 0 0 var(--espaco-md);
-  color: var(--cor-texto);
-  line-height: 1.2;
+.status-indicador {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--cor-acento-suave);
+  box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.6);
+  animation: pulso 2s infinite;
 }
 
-.hero-subtitulo {
-  font-size: 1.05rem;
+@keyframes pulso {
+  0%   { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(100, 255, 218, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); }
+}
+
+.status-versao {
+  color: var(--cor-acento);
+  font-family: var(--fonte-mono);
+}
+
+/* ---------- 7. Conteúdo principal ---------- */
+.conteudo {
+  flex: 1;
+  padding: var(--espaco-lg) var(--espaco-lg) var(--espaco-xl);
+  width: 100%;
+}
+
+.secao-painel {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.secao-titulo {
+  font-size: 1.1rem;
+  font-weight: 600;
   color: var(--cor-texto-suave);
-  margin: 0 0 var(--espaco-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 var(--espaco-md);
 }
 
-.hero-nota {
+/* ---------- 8. Grade de cards (CSS Grid) ---------- */
+.grade-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--espaco-md);
+}
+
+/* ---------- 9. Card individual ---------- */
+.card {
+  background-color: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-md);
+  padding: var(--espaco-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-xs);
+  box-shadow: var(--sombra-suave);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-media);
+  border-color: var(--cor-acento);
+}
+
+.card-titulo {
   font-size: 0.85rem;
-  color: var(--cor-texto-fraco);
-  padding-top: var(--espaco-md);
-  border-top: 1px solid var(--cor-superficie-alta);
-  display: inline-block;
-  padding-left: var(--espaco-md);
-  padding-right: var(--espaco-md);
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
 }
 
-/* ---------- 7. Rodapé ---------- */
+.card-valor {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--cor-texto);
+  margin: var(--espaco-xs) 0 0;
+  font-family: var(--fonte-mono);
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  line-height: 1.1;
+}
+
+.card-unidade {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--cor-texto-suave);
+  font-family: var(--fonte-padrao);
+}
+
+.card-variacao {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.card-variacao-alta {
+  color: var(--cor-alta);
+}
+
+.card-variacao-baixa {
+  color: var(--cor-baixa);
+}
+
+.card-periodo {
+  font-size: 0.75rem;
+  color: var(--cor-texto-fraco);
+  margin: var(--espaco-xs) 0 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- 10. Rodapé ---------- */
 .rodape {
   padding: var(--espaco-md) var(--espaco-lg);
   text-align: center;
   font-size: 0.85rem;
   color: var(--cor-texto-fraco);
-  border-top: 1px solid var(--cor-superficie-alta);
+  border-top: 1px solid var(--cor-borda);
+  background-color: var(--cor-superficie);
 }
 
 .rodape p {
-  margin: 0;
+  margin: 0 0 var(--espaco-xs);
 }
 
-/* ---------- 8. Responsividade ---------- */
+.rodape .rodape-nota {
+  font-size: 0.75rem;
+  color: var(--cor-texto-fraco);
+  max-width: 620px;
+  margin: var(--espaco-xs) auto 0;
+  text-align: center;
+  display: block;
+}
+
+/* ---------- 9.b Seções de grupo ---------- */
+.secao-grupo {
+  margin-bottom: var(--espaco-lg);
+}
+
+.grupo-titulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cor-acento);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 var(--espaco-sm);
+  padding-bottom: var(--espaco-xs);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* Reduz o espaço quando duas seções se seguem */
+.secao-grupo + .secao-grupo {
+  margin-top: 0;
+}
+
+/* ---------- 11. Responsividade fina ---------- */
 @media (max-width: 600px) {
   .cabecalho {
     padding: var(--espaco-sm);
+    justify-content: center;
   }
   .conteudo {
-    padding: var(--espaco-lg) var(--espaco-sm);
+    padding: var(--espaco-md) var(--espaco-sm) var(--espaco-lg);
+  }
+  .faixa-status {
+    padding: 10px var(--espaco-sm);
+    font-size: 0.78rem;
+  }
+  .card-valor {
+    font-size: 1.6rem;
   }
 }
