@@ -90,7 +90,7 @@ function renderizarIndicadores(indicadores) {
 async function carregarDados() {
     console.log("🔎 Iniciando carregamento de dados.json…");
 
-    const resposta = await fetch("dados.json");
+    const resposta = await fetch("data/dados.json");
     const dados = await resposta.json();
 
     console.log(`✅ JSON carregado: ${dados.secoes.length} seções, ${dados.indicadores.length} indicadores.`);
