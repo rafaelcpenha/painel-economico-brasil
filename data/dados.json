@@ -1,206 +1,209 @@
 {
-    "secoes": [
-        {
-            "id": "politica-monetaria",
-            "nome": "Política Monetária e Preços"
-        },
-        {
-            "id": "atividade",
-            "nome": "Atividade Econômica"
-        },
-        {
-            "id": "credito",
-            "nome": "Crédito e Endividamento"
-        },
-        {
-            "id": "trabalho",
-            "nome": "Mercado de Trabalho"
-        },
-        {
-            "id": "setor-publico",
-            "nome": "Setor Público"
-        },
-        {
-            "id": "comercio",
-            "nome": "Comércio Exterior"
-        }
-    ],
-    "indicadores": [
-        {
-            "titulo": "Taxa Selic",
-            "valor": 10.75,
-            "unidade": "% a.a.",
-            "variacao": {
-                "direcao": "baixa",
-                "texto": "0,50 p.p."
-            },
-            "periodo": "Set/2026",
-            "secao": "politica-monetaria"
-        },
-        {
-            "titulo": "IPCA (12 meses)",
-            "valor": 4.20,
-            "unidade": "%",
-            "variacao": {
-                "direcao": "baixa",
-                "texto": "0,15 p.p."
-            },
-            "periodo": "Ago/2026",
-            "secao": "politica-monetaria"
-        },
-        {
-            "titulo": "Câmbio (USD/BRL)",
-            "valor": 5.42,
-            "unidade": "R$",
-            "variacao": {
-                "direcao": "alta",
-                "texto": "0,08"
-            },
-            "periodo": "16/09/2026",
-            "secao": "politica-monetaria"
-        },
-        {
-            "titulo": "PIB — Ótica da Demanda",
-            "valor": 2.10,
-            "unidade": "% a.a.",
-            "variacao": {
-                "direcao": "alta",
-                "texto": "0,30 p.p."
-            },
-            "periodo": "2º tri/2026",
-            "secao": "atividade"
-        },
-        {
-            "titulo": "PIB — Ótica da Oferta",
-            "valor": 2.05,
-            "unidade": "% a.a.",
-            "variacao": {
-                "direcao": "alta",
-                "texto": "0,25 p.p."
-            },
-            "periodo": "2º tri/2026",
-            "secao": "atividade"
-        },
-        {
-            "titulo": "Investimento (FBCF)",
-            "valor": 17.2,
-            "unidade": "% PIB",
-            "variacao": {
-                "direcao": "baixa",
-                "texto": "0,20 p.p."
-            },
-            "periodo": "2º tri/2026",
-            "secao": "atividade"
-        },
-        {
-            "titulo": "Consumo das Famílias",
-            "valor": 3.40,
-            "unidade": "% a.a.",
-            "variacao": {
-                "direcao": "alta",
-                "texto": "0,10 p.p."
-            },
-            "periodo": "2º tri/2026",
-            "secao": "atividade"
-        },
-        {
-            "titulo": "Crédito Total",
-            "valor": 52.8,
-            "unidade": "% PIB",
-            "variacao": {
-                "direcao": "alta",
-                "texto": "0,40 p.p."
-            },
-            "periodo": "Jul/2026",
-            "secao": "credito"
-        },
-        {
-            "titulo": "Endividamento das Famílias",
-            "valor": 48.5,
-            "unidade": "% renda",
-            "variacao": {
-                "direcao": "alta",
-                "texto": "0,30 p.p."
-            },
-            "periodo": "Jul/2026",
-            "secao": "credito"
-        },
-        {
-            "titulo": "Taxa de Desemprego",
-            "valor": 6.80,
-            "unidade": "%",
-            "variacao": {
-                "direcao": "baixa",
-                "texto": "0,20 p.p."
-            },
-            "periodo": "Jul/2026",
-            "secao": "trabalho"
-        },
-        {
-            "titulo": "População Economicamente Ativa",
-            "valor": 105.3,
-            "unidade": "milhões",
-            "variacao": {
-                "direcao": "alta",
-                "texto": "0,15%"
-            },
-            "periodo": "Jul/2026",
-            "secao": "trabalho"
-        },
-        {
-            "titulo": "Gasto Público (União)",
-            "valor": 19.4,
-            "unidade": "% PIB",
-            "variacao": {
-                "direcao": "baixa",
-                "texto": "0,10 p.p."
-            },
-            "periodo": "Ago/2026",
-            "secao": "setor-publico"
-        },
-        {
-            "titulo": "Resultado Primário",
-            "valor": -0.45,
-            "unidade": "% PIB",
-            "variacao": {
-                "direcao": "alta",
-                "texto": "0,05 p.p."
-            },
-            "periodo": "Ago/2026",
-            "secao": "setor-publico"
-        },
-        {
-            "titulo": "Exportações",
-            "valor": 30.5,
-            "unidade": "US$ bi",
-            "variacao": {
-                "direcao": "alta",
-                "texto": "4,2%"
-            },
-            "periodo": "Ago/2026",
-            "secao": "comercio"
-        },
-        {
-            "titulo": "Importações",
-            "valor": 22.1,
-            "unidade": "US$ bi",
-            "variacao": {
-                "direcao": "alta",
-                "texto": "6,8%"
-            },
-            "periodo": "Ago/2026",
-            "secao": "comercio"
-        },
-        {
-            "titulo": "Saldo Comercial",
-            "valor": 8.4,
-            "unidade": "US$ bi",
-            "variacao": {
-                "direcao": "baixa",
-                "texto": "1,1%"
-            },
-            "periodo": "Ago/2026",
-            "secao": "comercio"
-        }
-    ]
+  "secoes": [
+    {
+      "id": "politica-monetaria",
+      "nome": "Política Monetária e Preços"
+    },
+    {
+      "id": "atividade",
+      "nome": "Atividade Econômica"
+    },
+    {
+      "id": "credito",
+      "nome": "Crédito e Endividamento"
+    },
+    {
+      "id": "trabalho",
+      "nome": "Mercado de Trabalho"
+    },
+    {
+      "id": "setor-publico",
+      "nome": "Setor Público"
+    },
+    {
+      "id": "comercio",
+      "nome": "Comércio Exterior"
+    }
+  ],
+  "indicadores": [
+    {
+      "id": "selic",
+      "titulo": "Taxa Selic",
+      "valor": 13.75,
+      "unidade": "% a.a.",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0.00"
+      },
+      "periodo": "2026-11-04",
+      "secao": "politica-monetaria"
+    },
+    {
+      "id": "ipca",
+      "titulo": "IPCA (12 meses)",
+      "valor": 4.22,
+      "unidade": "%",
+      "variacao": {
+        "direcao": "baixa",
+        "texto": "0.22"
+      },
+      "periodo": "2026-08-01",
+      "secao": "politica-monetaria"
+    },
+    {
+      "id": "cambio",
+      "titulo": "Câmbio (USD/BRL)",
+      "valor": 5.1575,
+      "unidade": "R$",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0.01"
+      },
+      "periodo": "2026-09-18",
+      "secao": "politica-monetaria"
+    },
+    {
+      "titulo": "PIB — Ótica da Demanda",
+      "valor": 2.1,
+      "unidade": "% a.a.",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,30 p.p."
+      },
+      "periodo": "2º tri/2026",
+      "secao": "atividade"
+    },
+    {
+      "titulo": "PIB — Ótica da Oferta",
+      "valor": 2.05,
+      "unidade": "% a.a.",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,25 p.p."
+      },
+      "periodo": "2º tri/2026",
+      "secao": "atividade"
+    },
+    {
+      "titulo": "Investimento (FBCF)",
+      "valor": 17.2,
+      "unidade": "% PIB",
+      "variacao": {
+        "direcao": "baixa",
+        "texto": "0,20 p.p."
+      },
+      "periodo": "2º tri/2026",
+      "secao": "atividade"
+    },
+    {
+      "titulo": "Consumo das Famílias",
+      "valor": 3.4,
+      "unidade": "% a.a.",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,10 p.p."
+      },
+      "periodo": "2º tri/2026",
+      "secao": "atividade"
+    },
+    {
+      "titulo": "Crédito Total",
+      "valor": 52.8,
+      "unidade": "% PIB",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,40 p.p."
+      },
+      "periodo": "Jul/2026",
+      "secao": "credito"
+    },
+    {
+      "titulo": "Endividamento das Famílias",
+      "valor": 48.5,
+      "unidade": "% renda",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,30 p.p."
+      },
+      "periodo": "Jul/2026",
+      "secao": "credito"
+    },
+    {
+      "titulo": "Taxa de Desemprego",
+      "valor": 6.8,
+      "unidade": "%",
+      "variacao": {
+        "direcao": "baixa",
+        "texto": "0,20 p.p."
+      },
+      "periodo": "Jul/2026",
+      "secao": "trabalho"
+    },
+    {
+      "titulo": "População Economicamente Ativa",
+      "valor": 105.3,
+      "unidade": "milhões",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,15%"
+      },
+      "periodo": "Jul/2026",
+      "secao": "trabalho"
+    },
+    {
+      "titulo": "Gasto Público (União)",
+      "valor": 19.4,
+      "unidade": "% PIB",
+      "variacao": {
+        "direcao": "baixa",
+        "texto": "0,10 p.p."
+      },
+      "periodo": "Ago/2026",
+      "secao": "setor-publico"
+    },
+    {
+      "titulo": "Resultado Primário",
+      "valor": -0.45,
+      "unidade": "% PIB",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,05 p.p."
+      },
+      "periodo": "Ago/2026",
+      "secao": "setor-publico"
+    },
+    {
+      "titulo": "Exportações",
+      "valor": 30.5,
+      "unidade": "US$ bi",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "4,2%"
+      },
+      "periodo": "Ago/2026",
+      "secao": "comercio"
+    },
+    {
+      "titulo": "Importações",
+      "valor": 22.1,
+      "unidade": "US$ bi",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "6,8%"
+      },
+      "periodo": "Ago/2026",
+      "secao": "comercio"
+    },
+    {
+      "titulo": "Saldo Comercial",
+      "valor": 8.4,
+      "unidade": "US$ bi",
+      "variacao": {
+        "direcao": "baixa",
+        "texto": "1,1%"
+      },
+      "periodo": "Ago/2026",
+      "secao": "comercio"
+    }
+  ]
 }
