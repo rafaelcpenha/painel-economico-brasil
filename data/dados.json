@@ -107,25 +107,27 @@
       "secao": "atividade"
     },
     {
+      "id": "credito",
       "titulo": "Crédito Total",
-      "valor": 52.8,
+      "valor": 55.75,
       "unidade": "% PIB",
       "variacao": {
         "direcao": "alta",
-        "texto": "0,40 p.p."
+        "texto": "0.15"
       },
-      "periodo": "Jul/2026",
+      "periodo": "2026-06-01",
       "secao": "credito"
     },
     {
+      "id": "endividamento",
       "titulo": "Endividamento das Famílias",
-      "valor": 48.5,
+      "valor": 49.75,
       "unidade": "% renda",
       "variacao": {
-        "direcao": "alta",
-        "texto": "0,30 p.p."
+        "direcao": "baixa",
+        "texto": "0.08"
       },
-      "periodo": "Jul/2026",
+      "periodo": "2026-06-01",
       "secao": "credito"
     },
     {

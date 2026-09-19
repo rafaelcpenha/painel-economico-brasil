@@ -18,9 +18,11 @@ CAMINHO_DADOS = RAIZ_PROJETO / "data" / "dados.json"
 # --- Catálogo de séries do BCB ---
 # (código_sgs, id_no_json, unidade)
 SERIES_BCB = [
-    (432,   "selic",  "% a.a."),
-    (13522, "ipca",   "%"),
-    (1,     "cambio", "R$"),
+    (432,   "selic",         "% a.a."),
+    (13522, "ipca",          "%"),
+    (1,     "cambio",        "R$"),
+    (20622, "credito",       "% PIB"),
+    (29037, "endividamento", "% renda"),
 ]
 
 
@@ -59,8 +61,9 @@ def gerar_dados():
         print(f"  {id_indicador}: {resultado['valor']} ({resultado['data']})")
 
         # Encontra o indicador no JSON pelo id
+        encontrado = False
         for indicador in dados["indicadores"]:
-            if indicador["id"] == id_indicador:
+            if indicador.get("id") == id_indicador:
                 indicador["valor"] = resultado["valor"]
                 indicador["unidade"] = unidade
                 indicador["periodo"] = resultado["data"]
@@ -68,7 +71,11 @@ def gerar_dados():
                     "direcao": resultado["variacao_direcao"],
                     "texto": f"{abs(resultado['variacao']):.2f}",
                 }
+                encontrado = True
                 break
+
+        if not encontrado:
+            print(f"  ⚠️  Indicador '{id_indicador}' não encontrado no dados.json. Pulando.")
 
     # Grava o arquivo atualizado
     with open(CAMINHO_DADOS, "w", encoding="utf-8") as f:
