@@ -28,10 +28,16 @@ SERIES_BCB = [
 
 # (categoria, id_no_json, unidade)
 SERIES_IBGE = [
-    (90707, "pib-mercado",      "% a.a."),
-    (93404, "consumo-familias", "% a.a."),
-    (93406, "fbcf",             "% a.a."),
-    (90696, "servicos",         "% a.a."),
+    (90707, "pib-mercado",        "% a.a."),
+    (93404, "consumo-familias",   "% a.a."),
+    (93405, "consumo-governo",    "% a.a."),
+    (93406, "fbcf",               "% a.a."),
+    (93407, "exportacoes-ibge",   "% a.a."),
+    (93408, "importacoes-ibge",   "% a.a."),
+    (90687, "agropecuaria",       "% a.a."),
+    (90691, "industria",          "% a.a."),
+    (90696, "servicos",           "% a.a."),
+    (90706, "impostos",           "% a.a."),
 ]
 
 def buscar_serie_do_bcb(codigo: int) -> dict:
