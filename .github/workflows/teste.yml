@@ -1,0 +1,17 @@
+name: Teste de automação
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Exibir mensagem de boas-vindas
+        run: echo "🐍 Automação funcionando no GitHub Actions!"
+
+      - name: Exibir data e hora
+        run: date
+
+      - name: Exibir versão do Ubuntu
+        run: lsb_release -a
