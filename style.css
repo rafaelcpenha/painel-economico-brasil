@@ -340,6 +340,26 @@ a:hover {
   display: none;
 }
 
+/* ---------- 9.d Subseções ---------- */
+.subsecao {
+  margin-bottom: var(--espaco-md);
+}
+
+.subsecao-titulo {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: var(--espaco-md) 0 var(--espaco-sm);
+  padding-left: var(--espaco-xs);
+  border-left: 3px solid var(--cor-acento);
+}
+
+.subsecao-titulo:empty {
+  display: none;
+}
+
 /* ---------- 11. Responsividade fina ---------- */
 @media (max-width: 600px) {
   .cabecalho {

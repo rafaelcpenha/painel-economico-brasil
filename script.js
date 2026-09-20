@@ -41,7 +41,7 @@ function montarCardHTML(indicador) {
 
     return `
     <article class="card">
-      <h4 class="card-titulo">${indicador.titulo}</h4>
+      <h5 class="card-titulo">${indicador.titulo}</h5>
       <p class="card-valor">${valorFormatado}<span class="card-unidade">${indicador.unidade}</span></p>
       <p class="card-variacao ${classeVariacao}">${seta} ${indicador.variacao.texto}</p>
       <p class="card-periodo">${indicador.periodo}</p>
@@ -58,11 +58,27 @@ function montarCardHTML(indicador) {
  */
 function renderizarTitulosDasSecoes(secoes) {
     secoes.forEach((secao) => {
-        const elemento = document.querySelector(`[data-secao="${secao.id}"] .grupo-titulo`);
-        if (elemento) {
-            elemento.textContent = secao.nome;
+        // Título da seção
+        const elementoSecao = document.querySelector(`[data-secao="${secao.id}"] .grupo-titulo`);
+        if (elementoSecao) {
+            elementoSecao.textContent = secao.nome;
         } else {
             console.warn(`⚠️  Seção "${secao.id}" não encontrada no HTML.`);
+        }
+
+        // Títulos das subseções (se houver)
+        if (secao.subsecoes) {
+            secao.subsecoes.forEach((sub) => {
+                const elementoSub = document.querySelector(
+                    `[data-secao="${secao.id}"] [data-subsecao="${sub.id}"] .subsecao-titulo`
+                );
+                if (elementoSub) {
+                    // Se o nome for vazio, mantém vazio (CSS esconde)
+                    elementoSub.textContent = sub.nome || "";
+                } else {
+                    console.warn(`⚠️  Subseção "${sub.id}" não encontrada no HTML.`);
+                }
+            });
         }
     });
 }
@@ -72,13 +88,26 @@ function renderizarTitulosDasSecoes(secoes) {
  */
 function renderizarIndicadores(indicadores) {
     indicadores.forEach((indicador) => {
-        const container = document.querySelector(
-            `[data-secao="${indicador.secao}"] .grade-cards`
-        );
+        let container;
+
+        if (indicador.subsecao) {
+            // Indicador pertence a uma subseção
+            container = document.querySelector(
+                `[data-secao="${indicador.secao}"] [data-subsecao="${indicador.subsecao}"] .grade-cards`
+            );
+        } else {
+            // Indicador pertence diretamente à seção (sem subseção)
+            container = document.querySelector(
+                `[data-secao="${indicador.secao}"] > .grade-cards`
+            );
+        }
 
         if (!container) {
-            console.warn(`⚠️  Container da seção "${indicador.secao}" não encontrado.`);
-            return; // pula este indicador
+            console.warn(
+                `⚠️  Container para indicador "${indicador.titulo}" não encontrado ` +
+                `(seção="${indicador.secao}", subsecao="${indicador.subsecao || 'nenhuma'}").`
+            );
+            return;
         }
 
         container.insertAdjacentHTML("beforeend", montarCardHTML(indicador));

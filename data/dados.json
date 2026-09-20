@@ -6,7 +6,21 @@
     },
     {
       "id": "atividade",
-      "nome": "Atividade Econômica"
+      "nome": "Atividade Econômica",
+      "subsecoes": [
+        {
+          "id": "pib-geral",
+          "nome": ""
+        },
+        {
+          "id": "otica-demanda",
+          "nome": "Ótica da Demanda"
+        },
+        {
+          "id": "otica-oferta",
+          "nome": "Ótica da Oferta"
+        }
+      ]
     },
     {
       "id": "credito",
@@ -63,7 +77,9 @@
       "secao": "politica-monetaria"
     },
     {
-      "titulo": "PIB — Ótica da Demanda",
+      "id": "pib-mercado",
+      "titulo": "PIB a preços de mercado",
+      "subsecao": "pib-geral",
       "valor": 2.1,
       "unidade": "% a.a.",
       "variacao": {
@@ -74,18 +90,35 @@
       "secao": "atividade"
     },
     {
-      "titulo": "PIB — Ótica da Oferta",
-      "valor": 2.05,
+      "id": "consumo-familias",
+      "titulo": "Consumo das Famílias",
+      "subsecao": "otica-demanda",
+      "valor": 3.4,
       "unidade": "% a.a.",
       "variacao": {
         "direcao": "alta",
-        "texto": "0,25 p.p."
+        "texto": "0,10 p.p."
       },
       "periodo": "2º tri/2026",
       "secao": "atividade"
     },
     {
-      "titulo": "Investimento (FBCF)",
+      "id": "consumo-governo",
+      "titulo": "Consumo do Governo",
+      "subsecao": "otica-demanda",
+      "valor": 1.5,
+      "unidade": "% a.a.",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,20 p.p."
+      },
+      "periodo": "2º tri/2026",
+      "secao": "atividade"
+    },
+    {
+      "id": "fbcf",
+      "titulo": "Formação Bruta de Capital Fixo (FBCF)",
+      "subsecao": "otica-demanda",
       "valor": 17.2,
       "unidade": "% PIB",
       "variacao": {
@@ -96,12 +129,79 @@
       "secao": "atividade"
     },
     {
-      "titulo": "Consumo das Famílias",
-      "valor": 3.4,
+      "id": "exportacoes-ibge",
+      "titulo": "Exportações (PIB)",
+      "subsecao": "otica-demanda",
+      "valor": 3.8,
+      "unidade": "% a.a.",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,40 p.p."
+      },
+      "periodo": "2º tri/2026",
+      "secao": "atividade"
+    },
+    {
+      "id": "importacoes-ibge",
+      "titulo": "Importações (PIB)",
+      "subsecao": "otica-demanda",
+      "valor": 5.2,
+      "unidade": "% a.a.",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,60 p.p."
+      },
+      "periodo": "2º tri/2026",
+      "secao": "atividade"
+    },
+    {
+      "id": "agropecuaria",
+      "titulo": "Agropecuária",
+      "subsecao": "otica-oferta",
+      "valor": 4.1,
+      "unidade": "% a.a.",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,50 p.p."
+      },
+      "periodo": "2º tri/2026",
+      "secao": "atividade"
+    },
+    {
+      "id": "industria",
+      "titulo": "Indústria",
+      "subsecao": "otica-oferta",
+      "valor": 2.3,
+      "unidade": "% a.a.",
+      "variacao": {
+        "direcao": "alta",
+        "texto": "0,15 p.p."
+      },
+      "periodo": "2º tri/2026",
+      "secao": "atividade"
+    },
+    {
+      "id": "servicos",
+      "titulo": "Serviços",
+      "subsecao": "otica-oferta",
+      "valor": 1.9,
       "unidade": "% a.a.",
       "variacao": {
         "direcao": "alta",
         "texto": "0,10 p.p."
+      },
+      "periodo": "2º tri/2026",
+      "secao": "atividade"
+    },
+    {
+      "id": "impostos",
+      "titulo": "Impostos Líquidos sobre Produtos",
+      "subsecao": "otica-oferta",
+      "valor": 2.5,
+      "unidade": "% a.a.",
+      "variacao": {
+        "direcao": "baixa",
+        "texto": "0,05 p.p."
       },
       "periodo": "2º tri/2026",
       "secao": "atividade"
