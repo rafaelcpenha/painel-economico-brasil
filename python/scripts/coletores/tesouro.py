@@ -4,7 +4,7 @@
 
 import requests
 from datetime import datetime
-from utils import data_tesouro_para_texto, meses_atras
+from utils import data_tesouro_para_texto, meses_atras, requisitar_com_retry
 
 
 URL_BASE = "https://apiapex.tesouro.gov.br/aria/v1/series-temporais/custom"
@@ -42,7 +42,7 @@ def buscar_ultimos_valores(
         "data_inicio": data_inicio,
     }
 
-    resposta = requests.get(url, params=params, timeout=20)
+    resposta = requisitar_com_retry(url, params=params, timeout=20)
     resposta.raise_for_status()
 
     dados_brutos = resposta.json()

@@ -3,7 +3,7 @@
 # =====================================================
 
 import requests
-from utils import periodo_ibge_para_texto
+from utils import periodo_ibge_para_texto, requisitar_com_retry
 
 
 URL_BASE = "https://servicodados.ibge.gov.br/api/v3/agregados"
@@ -40,7 +40,7 @@ def buscar_ultimos_valores(
         f"&classificacao={CLASSIFICACAO_SETORES}[{categoria}]"
     )
 
-    resposta = requests.get(url, timeout=20)
+    resposta = requisitar_com_retry(url, timeout=20)
     resposta.raise_for_status()
 
     dados_brutos = resposta.json()

@@ -2,10 +2,10 @@
 # Coletor de dados do Comex Stat (MDIC)
 # =====================================================
 
-import requests
 import time
+import requests
 from datetime import datetime
-from utils import meses_atras
+from utils import meses_atras, requisitar_com_retry
 
 
 URL_BASE = "https://api-comexstat.mdic.gov.br/general"
@@ -56,7 +56,7 @@ def _buscar_mensal(flow: str) -> list[dict]:
 
     # Tenta até 3 vezes em caso de rate limit
     for tentativa in range(3):
-        resposta = requests.post(URL_BASE, json=body, timeout=30)
+        resposta = requisitar_com_retry(URL_BASE, method="post", json=body, timeout=30)
 
         if resposta.status_code == 429:
             print(f"  ⏳ Rate limit atingido. Aguardando 15s... (tentativa {tentativa + 1}/3)")
