@@ -7,26 +7,26 @@ comércio exterior.
 
 ## Status
 
-🚧 **Em construção** — v0.4 (dados reais de BCB e IBGE, semântica de cores)
+🚧 **Em construção** — v0.5 (dados reais de 4 fontes, higiene do repositório)
 
 ## O que já existe
 
 - ✅ **v0.1** — Home inicial publicada
 - ✅ **v0.2** — Painel com 16 cards distribuídos em 6 seções temáticas
 - ✅ **v0.3** — Arquitetura orientada a dados (JSON + JavaScript)
-- ✅ **v0.4** — Integração com fontes oficiais:
+- ✅ **v0.4** — Integração com BCB e IBGE; subseções; semântica de cores
+- ✅ **v0.5** — Integração completa com 4 fontes oficiais:
   - **BCB (SGS)**: Selic, IPCA, Câmbio, Crédito Total, Endividamento
   - **IBGE (SIDRA)**: PIB, Consumo das Famílias, Consumo do Governo,
     FBCF, Exportações (PIB), Importações (PIB), Agropecuária,
     Indústria, Serviços, Impostos Líquidos
-  - **Semântica de cores**: cada indicador tem polaridade própria
-    (alta pode ser bom ou ruim dependendo do indicador)
-  - **Subseções**: Atividade Econômica dividida em Ótica da Demanda e
-    Ótica da Oferta
+  - **Tesouro Nacional (Aria)**: Resultado Primário, Gasto Público
+  - **Comex Stat (MDIC)**: Exportações, Importações, Saldo Comercial
+  - **Higiene**: `nbstripout` para notebooks; sufixos e percentuais
+    nas variações em R$ bi e US$ bi; timeout robusto
 
-**15 dos 22 indicadores** têm dados reais. Os 7 restantes (Desemprego, PEA,
-Gasto Público, Resultado Primário, Exportações/Importações/Saldo Comex)
-serão integrados nas próximas versões.
+**20 dos 22 indicadores** têm dados reais. Os 2 restantes
+(Desemprego e PEA, da PNAD Contínua) serão integrados na v0.6.
 
 ## Roadmap
 
@@ -34,12 +34,11 @@ serão integrados nas próximas versões.
 - [x] **v0.2** — Layout em grid de cards por indicador, com seções temáticas
 - [x] **v0.3** — Dados manuais via JSON, renderização dinâmica
 - [x] **v0.4** — Integração com BCB e IBGE; semântica de cores por polaridade
-- [ ] **v0.5** — Integração com Tesouro Nacional (gasto público, resultado primário)
-- [ ] **v0.6** — Integração com Comex Stat (exportações, importações, saldo)
-- [ ] **v0.7** — Integração com PNAD Contínua (desemprego, PEA)
+- [x] **v0.5** — Integração com Tesouro e Comex Stat; higiene do repositório
+- [ ] **v0.6** — Integração com PNAD Contínua (desemprego, PEA)
+- [ ] **v0.7** — Automação via GitHub Actions
 - [ ] **v0.8** — Gráficos de séries históricas (Chart.js)
-- [ ] **v0.9** — Automação via GitHub Actions
-- [ ] **v0.10** — Treemap de parceiros comerciais
+- [ ] **v0.9** — Treemap de parceiros comerciais
 - [ ] **v1.0** — Detalhamento de gasto público e orçamento (livre vs. vinculado)
 
 ## Fontes de dados
@@ -63,11 +62,11 @@ serão integrados nas próximas versões.
 | Impostos Líquidos | IBGE SIDRA 5932 | ✅ Integrado |
 | Taxa de Desemprego | IBGE PNAD Contínua | ⏳ Pendente |
 | PEA | IBGE PNAD Contínua | ⏳ Pendente |
-| Gasto Público (União) | Tesouro Nacional | ⏳ Pendente |
-| Resultado Primário | Tesouro Nacional | ⏳ Pendente |
-| Exportações (US$ bi) | Comex Stat (MDIC) | ⏳ Pendente |
-| Importações (US$ bi) | Comex Stat (MDIC) | ⏳ Pendente |
-| Saldo Comercial | Comex Stat (MDIC) | ⏳ Pendente |
+| Gasto Público (União) | Tesouro Nacional | ✅ Integrado |
+| Resultado Primário | Tesouro Nacional | ✅ Integrado |
+| Exportações (US$ bi) | Comex Stat (MDIC) | ✅ Integrado |
+| Importações (US$ bi) | Comex Stat (MDIC) | ✅ Integrado |
+| Saldo Comercial | Comex Stat (MDIC) | ✅ Integrado |
 
 ## Arquitetura
 
@@ -113,27 +112,30 @@ serão integrados nas próximas versões.
 - **Git / GitHub Pages** — versionamento e publicação
 
 ## Estrutura do projeto
+
 ```
 painel-economico-brasil/
-├── index.html # Estrutura da página
-├── style.css # Estilos e design tokens
-├── script.js # Lógica de renderização (fetch + DOM)
-├── README.md # Este arquivo
+├── index.html              # Estrutura da página
+├── style.css               # Estilos e design tokens
+├── script.js               # Lógica de renderização (fetch + DOM)
+├── .gitattributes          # Configuração do nbstripout
+├── README.md               # Este arquivo
 ├── .gitignore
 ├── data/
-│ └── dados.json # Dados dos indicadores (fonte de verdade do site)
+│   └── dados.json          # Dados dos indicadores (fonte de verdade do site)
 └── python/
-├── README.md # Documentação do módulo Python
-├── notebooks/ # Exploração de APIs (Jupyter)
-└── scripts/
-├── gerar_dados.py # Script principal — orquestra a coleta
-├── utils.py # Funções auxiliares
-└── coletores/
-├── init.py
-├── bcb.py # Coletor do Banco Central (SGS)
-└── ibge.py # Coletor do IBGE (SIDRA)
+    ├── README.md           # Documentação do módulo Python
+    ├── notebooks/          # Exploração de APIs (Jupyter)
+    └── scripts/
+        ├── gerar_dados.py  # Script principal — orquestra a coleta
+        ├── utils.py        # Funções auxiliares
+        └── coletores/
+            ├── __init__.py
+            ├── bcb.py      # Banco Central (SGS)
+            ├── ibge.py     # IBGE (SIDRA)
+            ├── tesouro.py  # Tesouro Nacional (Aria)
+            └── comex.py    # Comex Stat (MDIC)
 ```
-
 
 ## Autor
 
@@ -143,3 +145,4 @@ GitHub: [@rafaelcpenha](https://github.com/rafaelcpenha)
 ## Licença
 
 Projeto de estudo. Código aberto para fins educacionais.
+

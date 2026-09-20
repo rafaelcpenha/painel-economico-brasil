@@ -61,10 +61,17 @@ de gravação do arquivo `data/dados.json`.
 
 ## Fontes integradas
 
-| Fonte               | Módulo              | Status          |
-| ------------------- | ------------------- | --------------- |
-| Banco Central (SGS) | `coletores/bcb.py`  | ✅ 5 séries      |
-| IBGE (SIDRA)        | `coletores/ibge.py` | ✅ 10 categorias |
+| Fonte | Módulo | Status | Séries |
+|---|---|---|---|
+| Banco Central (SGS) | `coletores/bcb.py` | ✅ | Selic, IPCA, Câmbio, Crédito, Endividamento |
+| IBGE (SIDRA) | `coletores/ibge.py` | ✅ | PIB, Consumo (2), FBCF, Export/Import, Agro, Indústria, Serviços, Impostos |
+| Tesouro Nacional (Aria) | `coletores/tesouro.py` | ✅ | Resultado Primário, Gasto Público |
+| Comex Stat (MDIC) | `coletores/comex.py` | ✅ | Exportações, Importações, Saldo |
+
+**Notas técnicas:**
+- **Comex Stat** tem rate limit (~1 chamada/10s). O coletor aguarda entre chamadas.
+- **Comparação temporal** varia por fonte: mês a mês (BCB, IBGE), ano a ano (Tesouro, Comex).
+- **Percentuais nas variações** são exibidos apenas quando o valor-base é positivo.
 
 ## Fontes planejadas
 
@@ -104,3 +111,8 @@ cd python/scripts
 conda activate painel-economico-brasil
 python gerar_dados.py
 ```
+## Higiene
+
+- **`nbstripout`** configurado para remover outputs dos notebooks antes de commit.
+- **Timeout** de 20s em todos os coletores.
+- **`.gitignore`** exclui dados brutos, ambientes virtuais e checkpoints de Jupyter.
