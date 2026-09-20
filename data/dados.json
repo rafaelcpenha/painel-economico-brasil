@@ -272,7 +272,7 @@
     {
       "id": "gasto-publico",
       "titulo": "Gasto Público (União)",
-      "polaridade": "positiva",
+      "polaridade": "negativa",
       "valor": 215.52202237159554,
       "unidade": "R$ bi",
       "variacao": {
