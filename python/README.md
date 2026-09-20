@@ -6,19 +6,24 @@ gerar** o arquivo `data/dados.json` consumido pelo site.
 
 ## Estrutura
 
-```text
+```
 python/
 ├── notebooks/                         # Exploração interativa (Jupyter)
+│   ├── teste.ipynb                    # Teste do ambiente
 │   ├── exploracao-bcb.ipynb           # Exploração da API SGS do BCB
-│   └── exploracao-ibge.ipynb          # Exploração da API SIDRA do IBGE
+│   ├── exploracao-ibge.ipynb          # Exploração da API SIDRA do IBGE
+│   ├── exploracao-tesouro.ipynb       # Exploração da API Aria do Tesouro
+│   └── exploracao-comex.ipynb         # Exploração da API do Comex Stat
 ├── scripts/
 │   ├── gerar_dados.py                 # Script principal — orquestra a coleta
-│   ├── utils.py                        # Funções auxiliares
-│   └── coletores/                      # Um módulo por fonte de dados
+│   ├── utils.py                       # Funções auxiliares
+│   └── coletores/                     # Um módulo por fonte de dados
 │       ├── __init__.py
-│       ├── bcb.py                      # Banco Central — SGS
-│       └── ibge.py                     # IBGE — SIDRA
-└── README.md                           # Este arquivo
+│       ├── bcb.py                     # Banco Central — SGS
+│       ├── ibge.py                    # IBGE — SIDRA
+│       ├── tesouro.py                 # Tesouro Nacional — Aria
+│       └── comex.py                   # Comex Stat — MDIC
+└── README.md                          # Este arquivo
 ````
 
 ## Ambiente
@@ -77,8 +82,6 @@ de gravação do arquivo `data/dados.json`.
 
 | Fonte                | Módulo futuro          |
 | -------------------- | ---------------------- |
-| Tesouro Nacional     | `coletores/tesouro.py` |
-| Comex Stat (MDIC)    | `coletores/comex.py`   |
 | IBGE — PNAD Contínua | `coletores/pnad.py`    |
 
 ## Notas técnicas
