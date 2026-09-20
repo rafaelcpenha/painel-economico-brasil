@@ -2,6 +2,8 @@
 # Utilitários comuns para o projeto Painel Econômico Brasil
 # =====================================================
 
+import requests
+import time
 from datetime import datetime
 
 
@@ -52,6 +54,47 @@ def data_tesouro_para_texto(data_iso: str) -> str:
 
     return f"{meses[dt.month - 1]}/{dt.year}"
 
+
+
+def requisitar_com_retry(
+    url: str,
+    method: str = "get",
+    tentativas: int = 3,
+    **kwargs,
+) -> requests.Response:
+    """
+    Faz uma requisição HTTP (GET ou POST) com retry automático em caso
+    de falhas transitórias (timeouts, erros de conexão, 5xx).
+
+    Espera crescente entre tentativas: 2s, 4s, 8s...
+    Parâmetros extras (kwargs) são passados direto ao requests.
+    """
+    ultima_excecao = None
+    for i in range(tentativas):
+        try:
+            if method == "post":
+                resposta = requests.post(url, **kwargs)
+            else:
+                resposta = requests.get(url, **kwargs)
+
+            if 500 <= resposta.status_code < 600:
+                raise requests.exceptions.HTTPError(
+                    f"Erro {resposta.status_code} do servidor"
+                )
+            return resposta
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+            requests.exceptions.HTTPError,
+        ) as e:
+            ultima_excecao = e
+            if i < tentativas - 1:
+                espera = 2 ** (i + 1)
+                print(f"  ⚠️  Falha na tentativa {i + 1}/{tentativas}: {e}")
+                print(f"     Aguardando {espera}s antes de tentar novamente...")
+                time.sleep(espera)
+    raise ultima_excecao
+
 def meses_atras(n: int) -> str:
     """
     Retorna o mês que está N meses atrás do mês atual, no formato MM/AAAA.
@@ -63,3 +106,4 @@ def meses_atras(n: int) -> str:
     ano = mes_total // 12
     mes = (mes_total % 12) + 1
     return f"{mes:02d}/{ano}"
+
