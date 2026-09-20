@@ -181,19 +181,29 @@ def calcular_saldo_comercial(exports: list[dict], imports: list[dict]) -> dict:
 
     return _calcular_variacao_ano_a_ano(valores_saldo)
 
-def atualizar_indicador(dados: dict, id_indicador: str, resultado: dict, unidade: str) -> bool:
+def atualizar_indicador(
+    dados: dict,
+    id_indicador: str,
+    resultado: dict,
+    unidade: str,
+    sufixo_variacao: str = "",
+) -> bool:
     """
     Atualiza um indicador no dicionário `dados` com o resultado coletado.
     Retorna True se encontrou, False caso contrário.
+
+    `sufixo_variacao`: texto opcional anexado ao final do texto da variação
+    (ex: " R$ bi", " US$ bi"). Vazio para indicadores em % ou p.p.
     """
     for indicador in dados["indicadores"]:
         if indicador.get("id") == id_indicador:
             indicador["valor"] = resultado["valor"]
             indicador["unidade"] = unidade
             indicador["periodo"] = resultado["data"]
+            texto_var = f"{abs(resultado['variacao']):.2f}".replace(".", ",")
             indicador["variacao"] = {
                 "direcao": resultado["variacao_direcao"],
-                "texto": f"{abs(resultado['variacao']):.2f}".replace(".", ","),
+                "texto": texto_var + sufixo_variacao,
             }
             return True
     return False
@@ -232,7 +242,7 @@ def gerar_dados():
         resultado = buscar_serie_do_tesouro(codigo)
         print(f"  {id_indicador}: {resultado['valor']:.2f} ({resultado['data']})")
 
-        if not atualizar_indicador(dados, id_indicador, resultado, unidade):
+        if not atualizar_indicador(dados, id_indicador, resultado, unidade, sufixo_variacao=" R$ bi"):
             print(f"  ⚠️  Indicador '{id_indicador}' não encontrado no dados.json.")
 
     # --- Coleta do Comex Stat ---
@@ -249,13 +259,13 @@ def gerar_dados():
     # Atualizamos os dois indicadores
     for id_ind, resultado in [("exportacoes", exp_processadas), ("importacoes", imp_processadas)]:
         print(f"  {id_ind}: {resultado['valor']:.2f} ({resultado['data']})")
-        if not atualizar_indicador(dados, id_ind, resultado, "US$ bi"):
+        if not atualizar_indicador(dados, id_ind, resultado, "US$ bi", sufixo_variacao=" US$ bi"):
             print(f"  ⚠️  Indicador '{id_ind}' não encontrado no dados.json.")
 
     # Calculamos o saldo comercial a partir dos dados já coletados
     saldo = calcular_saldo_comercial(exports_brutos, imports_brutos)
     print(f"  saldo-comercial: {saldo['valor']:.2f} ({saldo['data']})")
-    if not atualizar_indicador(dados, "saldo-comercial", saldo, "US$ bi"):
+    if not atualizar_indicador(dados, "saldo-comercial", saldo, "US$ bi", sufixo_variacao=" US$ bi"):
         print(f"  ⚠️  Indicador 'saldo-comercial' não encontrado no dados.json.")
 
     # Grava o arquivo atualizado
