@@ -118,6 +118,7 @@ def buscar_serie_do_tesouro(codigo: str) -> dict:
 
     return {
         "valor": atual["valor"],
+        "valor_anterior": anterior["valor"],
         "data": atual["periodo"],
         "variacao": variacao,
         "variacao_direcao": "alta" if variacao > 0 else ("baixa" if variacao < 0 else "neutro"),
@@ -148,6 +149,7 @@ def _calcular_variacao_ano_a_ano(valores: list[dict]) -> dict:
     variacao = atual["valor_bi"] - anterior["valor_bi"]
     return {
         "valor": atual["valor_bi"],
+        "valor_anterior": anterior["valor_bi"],
         "data": atual["periodo_texto"],
         "variacao": variacao,
         "variacao_direcao": "alta" if variacao > 0 else ("baixa" if variacao < 0 else "neutro"),
@@ -187,23 +189,40 @@ def atualizar_indicador(
     resultado: dict,
     unidade: str,
     sufixo_variacao: str = "",
+    incluir_percentual: bool = False,
 ) -> bool:
     """
     Atualiza um indicador no dicionário `dados` com o resultado coletado.
     Retorna True se encontrou, False caso contrário.
 
     `sufixo_variacao`: texto opcional anexado ao final do texto da variação
-    (ex: " R$ bi", " US$ bi"). Vazio para indicadores em % ou p.p.
+        (ex: " R$ bi", " US$ bi"). Vazio para indicadores em % ou p.p.
+
+    `incluir_percentual`: se True, adiciona o percentual da variação
+        em relação ao valor anterior — mas SOMENTE quando o valor
+        anterior é positivo. Se o valor anterior for zero ou negativo,
+        o percentual é omitido (evita distorção).
     """
     for indicador in dados["indicadores"]:
         if indicador.get("id") == id_indicador:
             indicador["valor"] = resultado["valor"]
             indicador["unidade"] = unidade
             indicador["periodo"] = resultado["data"]
+
             texto_var = f"{abs(resultado['variacao']):.2f}".replace(".", ",")
+
+            texto_final = texto_var + sufixo_variacao
+
+            # Adiciona percentual se requisitado E valor anterior > 0
+            if incluir_percentual and resultado.get("valor_anterior", 0) > 0:
+                perc = (resultado["variacao"] / resultado["valor_anterior"]) * 100
+                sinal = "+" if perc >= 0 else ""
+                texto_perc = f"{sinal}{perc:.1f}".replace(".", ",")
+                texto_final += f" ({texto_perc}%)"
+
             indicador["variacao"] = {
                 "direcao": resultado["variacao_direcao"],
-                "texto": texto_var + sufixo_variacao,
+                "texto": texto_final,
             }
             return True
     return False
@@ -242,7 +261,11 @@ def gerar_dados():
         resultado = buscar_serie_do_tesouro(codigo)
         print(f"  {id_indicador}: {resultado['valor']:.2f} ({resultado['data']})")
 
-        if not atualizar_indicador(dados, id_indicador, resultado, unidade, sufixo_variacao=" R$ bi"):
+        if not atualizar_indicador(
+            dados, id_indicador, resultado, unidade,
+            sufixo_variacao=" R$ bi",
+            incluir_percentual=True,
+        ):
             print(f"  ⚠️  Indicador '{id_indicador}' não encontrado no dados.json.")
 
     # --- Coleta do Comex Stat ---
@@ -259,13 +282,21 @@ def gerar_dados():
     # Atualizamos os dois indicadores
     for id_ind, resultado in [("exportacoes", exp_processadas), ("importacoes", imp_processadas)]:
         print(f"  {id_ind}: {resultado['valor']:.2f} ({resultado['data']})")
-        if not atualizar_indicador(dados, id_ind, resultado, "US$ bi", sufixo_variacao=" US$ bi"):
+        if not atualizar_indicador(
+            dados, id_ind, resultado, "US$ bi",
+            sufixo_variacao=" US$ bi",
+            incluir_percentual=True,
+        ):
             print(f"  ⚠️  Indicador '{id_ind}' não encontrado no dados.json.")
 
     # Calculamos o saldo comercial a partir dos dados já coletados
     saldo = calcular_saldo_comercial(exports_brutos, imports_brutos)
     print(f"  saldo-comercial: {saldo['valor']:.2f} ({saldo['data']})")
-    if not atualizar_indicador(dados, "saldo-comercial", saldo, "US$ bi", sufixo_variacao=" US$ bi"):
+    if not atualizar_indicador(
+        dados, "saldo-comercial", saldo, "US$ bi",
+        sufixo_variacao=" US$ bi",
+        incluir_percentual=True,
+    ):
         print(f"  ⚠️  Indicador 'saldo-comercial' não encontrado no dados.json.")
 
     # Grava o arquivo atualizado

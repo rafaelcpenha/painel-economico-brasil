@@ -277,7 +277,7 @@
       "unidade": "R$ bi",
       "variacao": {
         "direcao": "baixa",
-        "texto": "44,79 R$ bi"
+        "texto": "44,79 R$ bi (-17,2%)"
       },
       "periodo": "Jul/2026",
       "secao": "setor-publico"
@@ -303,7 +303,7 @@
       "unidade": "US$ bi",
       "variacao": {
         "direcao": "alta",
-        "texto": "3,60 US$ bi"
+        "texto": "3,60 US$ bi (+12,2%)"
       },
       "periodo": "Ago/2026",
       "secao": "comercio"
@@ -316,7 +316,7 @@
       "unidade": "US$ bi",
       "variacao": {
         "direcao": "alta",
-        "texto": "2,18 US$ bi"
+        "texto": "2,18 US$ bi (+9,2%)"
       },
       "periodo": "Ago/2026",
       "secao": "comercio"
@@ -329,7 +329,7 @@
       "unidade": "US$ bi",
       "variacao": {
         "direcao": "alta",
-        "texto": "1,42 US$ bi"
+        "texto": "1,42 US$ bi (+23,8%)"
       },
       "periodo": "Ago/2026",
       "secao": "comercio"
