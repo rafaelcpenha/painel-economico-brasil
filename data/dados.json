@@ -43,6 +43,7 @@
     {
       "id": "selic",
       "titulo": "Taxa Selic",
+      "polaridade": "negativa",
       "valor": 13.75,
       "unidade": "% a.a.",
       "variacao": {
@@ -55,6 +56,7 @@
     {
       "id": "ipca",
       "titulo": "IPCA (12 meses)",
+      "polaridade": "negativa",
       "valor": 4.22,
       "unidade": "%",
       "variacao": {
@@ -67,6 +69,7 @@
     {
       "id": "cambio",
       "titulo": "Câmbio (USD/BRL)",
+      "polaridade": "negativa",
       "valor": 5.1575,
       "unidade": "R$",
       "variacao": {
@@ -80,6 +83,7 @@
       "id": "pib-mercado",
       "titulo": "PIB a preços de mercado",
       "subsecao": "pib-geral",
+      "polaridade": "positiva",
       "valor": 2.0,
       "unidade": "% a.a.",
       "variacao": {
@@ -93,6 +97,7 @@
       "id": "consumo-familias",
       "titulo": "Consumo das Famílias",
       "subsecao": "otica-demanda",
+      "polaridade": "positiva",
       "valor": 0.5,
       "unidade": "% a.a.",
       "variacao": {
@@ -106,6 +111,7 @@
       "id": "consumo-governo",
       "titulo": "Consumo do Governo",
       "subsecao": "otica-demanda",
+      "polaridade": "positiva",
       "valor": 3.1,
       "unidade": "% a.a.",
       "variacao": {
@@ -119,6 +125,7 @@
       "id": "fbcf",
       "titulo": "Formação Bruta de Capital Fixo (FBCF)",
       "subsecao": "otica-demanda",
+      "polaridade": "positiva",
       "valor": 1.4,
       "unidade": "% a.a.",
       "variacao": {
@@ -132,6 +139,7 @@
       "id": "exportacoes-ibge",
       "titulo": "Exportações (PIB)",
       "subsecao": "otica-demanda",
+      "polaridade": "positiva",
       "valor": 3.8,
       "unidade": "% a.a.",
       "variacao": {
@@ -145,6 +153,7 @@
       "id": "importacoes-ibge",
       "titulo": "Importações (PIB)",
       "subsecao": "otica-demanda",
+      "polaridade": "negativa",
       "valor": 5.5,
       "unidade": "% a.a.",
       "variacao": {
@@ -158,6 +167,7 @@
       "id": "agropecuaria",
       "titulo": "Agropecuária",
       "subsecao": "otica-oferta",
+      "polaridade": "positiva",
       "valor": 6.8,
       "unidade": "% a.a.",
       "variacao": {
@@ -171,6 +181,7 @@
       "id": "industria",
       "titulo": "Indústria",
       "subsecao": "otica-oferta",
+      "polaridade": "positiva",
       "valor": 1.5,
       "unidade": "% a.a.",
       "variacao": {
@@ -184,6 +195,7 @@
       "id": "servicos",
       "titulo": "Serviços",
       "subsecao": "otica-oferta",
+      "polaridade": "positiva",
       "valor": 1.5,
       "unidade": "% a.a.",
       "variacao": {
@@ -197,6 +209,7 @@
       "id": "impostos",
       "titulo": "Impostos Líquidos sobre Produtos",
       "subsecao": "otica-oferta",
+      "polaridade": "positiva",
       "valor": 2.5,
       "unidade": "% a.a.",
       "variacao": {
@@ -209,10 +222,11 @@
     {
       "id": "credito",
       "titulo": "Crédito Total",
+      "polaridade": "positiva",
       "valor": 55.75,
       "unidade": "% PIB",
       "variacao": {
-        "direcao": "alta",
+        "direcao": "baixa",
         "texto": "0,15"
       },
       "periodo": "2026-06-01",
@@ -221,6 +235,7 @@
     {
       "id": "endividamento",
       "titulo": "Endividamento das Famílias",
+      "polaridade": "negativa",
       "valor": 49.75,
       "unidade": "% renda",
       "variacao": {
@@ -232,77 +247,84 @@
     },
     {
       "titulo": "Taxa de Desemprego",
+      "polaridade": "negativa",
       "valor": 6.8,
       "unidade": "%",
       "variacao": {
         "direcao": "baixa",
-        "texto": "0,20 p.p."
+        "texto": "0,20"
       },
       "periodo": "Jul/2026",
       "secao": "trabalho"
     },
     {
       "titulo": "População Economicamente Ativa",
+      "polaridade": "positiva",
       "valor": 105.3,
       "unidade": "milhões",
       "variacao": {
         "direcao": "alta",
-        "texto": "0,15%"
+        "texto": "0,15"
       },
       "periodo": "Jul/2026",
       "secao": "trabalho"
     },
     {
       "titulo": "Gasto Público (União)",
+      "polaridade": "positiva",
       "valor": 19.4,
       "unidade": "% PIB",
       "variacao": {
         "direcao": "baixa",
-        "texto": "0,10 p.p."
+        "texto": "0,10"
       },
       "periodo": "Ago/2026",
       "secao": "setor-publico"
     },
     {
       "titulo": "Resultado Primário",
+      "polaridade": "positiva",
       "valor": -0.45,
       "unidade": "% PIB",
       "variacao": {
         "direcao": "alta",
-        "texto": "0,05 p.p."
+        "texto": "0,05"
       },
       "periodo": "Ago/2026",
       "secao": "setor-publico"
     },
     {
       "titulo": "Exportações",
+      "polaridade": "positiva",
       "valor": 30.5,
       "unidade": "US$ bi",
       "variacao": {
         "direcao": "alta",
-        "texto": "4,2%"
+        "texto": "4,2"
       },
       "periodo": "Ago/2026",
       "secao": "comercio"
     },
     {
       "titulo": "Importações",
+      "polaridade": "negativa",
       "valor": 22.1,
       "unidade": "US$ bi",
       "variacao": {
         "direcao": "alta",
-        "texto": "6,8%"
+        "texto": "6,8"
       },
       "periodo": "Ago/2026",
       "secao": "comercio"
     },
     {
       "titulo": "Saldo Comercial",
+      "polaridade": "positiva",
       "valor": 8.4,
       "unidade": "US$ bi",
       "variacao": {
         "direcao": "baixa",
-        "texto": "1,1%"
+        "texto": "1,1"
       },
       "periodo": "Ago/2026",
       "secao": "comercio"

@@ -31,19 +31,47 @@ function setaDaVariacao(direcao) {
 }
 
 /**
+ * Retorna a classe CSS da variação com base na polaridade do indicador
+ * e na direção do movimento.
+ *
+ * - Se polaridade e direção "concordam" (positiva+alta ou negativa+baixa),
+ *   o movimento é BOM → verde.
+ * - Se "discordam" (positiva+baixa ou negativa+alta), é RUIM → vermelho.
+ * - Se direção é "neutro", é NEUTRO → cinza.
+ *
+ * polaridade: "positiva" | "negativa"
+ * direcao: "alta" | "baixa" | "neutro"
+ */
+function classeVariacao(polaridade, direcao) {
+    if (direcao === "neutro") return "card-variacao-neutro";
+
+    // Fallback: se não houver polaridade definida, assume o comportamento antigo
+    // (alta = vermelho, baixa = verde), que era o padrão anterior.
+    if (!polaridade) {
+        return direcao === "alta" ? "card-variacao-ruim" : "card-variacao-boa";
+    }
+
+    const concorda =
+        (polaridade === "positiva" && direcao === "alta") ||
+        (polaridade === "negativa" && direcao === "baixa");
+
+    return concorda ? "card-variacao-boa" : "card-variacao-ruim";
+}
+
+/**
  * Constrói o HTML de um card a partir de um objeto indicador.
  * Retorna uma string de HTML.
  */
 function montarCardHTML(indicador) {
     const valorFormatado = formatarNumero(indicador.valor);
     const seta = setaDaVariacao(indicador.variacao.direcao);
-    const classeVariacao = `card-variacao-${indicador.variacao.direcao}`;
+    const classe = classeVariacao(indicador.polaridade, indicador.variacao.direcao);
 
     return `
     <article class="card">
       <h5 class="card-titulo">${indicador.titulo}</h5>
       <p class="card-valor">${valorFormatado}<span class="card-unidade">${indicador.unidade}</span></p>
-      <p class="card-variacao ${classeVariacao}">${seta} ${indicador.variacao.texto}</p>
+      <p class="card-variacao ${classe}">${seta} ${indicador.variacao.texto}</p>
       <p class="card-periodo">${indicador.periodo}</p>
     </article>
   `;

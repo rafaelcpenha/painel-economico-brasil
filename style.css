@@ -271,16 +271,16 @@ a:hover {
   margin: 0;
 }
 
-.card-variacao-alta {
+.card-variacao-boa {
+  color: var(--cor-baixa);
+}
+
+.card-variacao-ruim {
   color: var(--cor-alta);
 }
 
 .card-variacao-neutro {
   color: var(--cor-texto-suave);
-}
-
-.card-variacao-baixa {
-  color: var(--cor-baixa);
 }
 
 .card-periodo {
