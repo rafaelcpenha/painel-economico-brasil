@@ -2,6 +2,8 @@ name: Atualizar dados dos indicadores
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 11 * * 1"
 
 # Permissões necessárias para o bot poder commitar
 permissions:
