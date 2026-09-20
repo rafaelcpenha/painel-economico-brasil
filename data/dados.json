@@ -270,27 +270,29 @@
       "secao": "trabalho"
     },
     {
+      "id": "gasto-publico",
       "titulo": "Gasto Público (União)",
       "polaridade": "positiva",
-      "valor": 19.4,
-      "unidade": "% PIB",
+      "valor": 215.52202237159554,
+      "unidade": "R$ bi",
       "variacao": {
         "direcao": "baixa",
-        "texto": "0,10"
+        "texto": "44,79"
       },
-      "periodo": "Ago/2026",
+      "periodo": "Jul/2026",
       "secao": "setor-publico"
     },
     {
+      "id": "resultado-primario",
       "titulo": "Resultado Primário",
       "polaridade": "positiva",
-      "valor": -0.45,
-      "unidade": "% PIB",
+      "valor": 10.783432184096426,
+      "unidade": "R$ bi",
       "variacao": {
         "direcao": "alta",
-        "texto": "0,05"
+        "texto": "69,85"
       },
-      "periodo": "Ago/2026",
+      "periodo": "Jul/2026",
       "secao": "setor-publico"
     },
     {

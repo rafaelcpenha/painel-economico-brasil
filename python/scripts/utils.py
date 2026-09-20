@@ -36,3 +36,18 @@ def periodo_ibge_para_texto(periodo_ibge: str) -> str:
     ano = periodo_ibge[:4]
     trimestre = int(periodo_ibge[4:])
     return f"{trimestre}º tri/{ano}"
+
+def data_tesouro_para_texto(data_iso: str) -> str:
+    """
+    Converte data ISO 8601 do Tesouro para texto legível (Mmm/AAAA).
+
+    Exemplo:
+        "2026-07-01T00:00:00.000Z" → "Jul/2026"
+    """
+    # Pega só a parte "AAAA-MM-DD" (primeiros 10 caracteres)
+    dt = datetime.strptime(data_iso[:10], "%Y-%m-%d")
+
+    meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+             "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+
+    return f"{meses[dt.month - 1]}/{dt.year}"
