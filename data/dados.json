@@ -32,8 +32,8 @@
       "valor": 13.75,
       "unidade": "% a.a.",
       "variacao": {
-        "direcao": "alta",
-        "texto": "0.00"
+        "direcao": "neutro",
+        "texto": "0,00"
       },
       "periodo": "2026-11-04",
       "secao": "politica-monetaria"
@@ -45,7 +45,7 @@
       "unidade": "%",
       "variacao": {
         "direcao": "baixa",
-        "texto": "0.22"
+        "texto": "0,22"
       },
       "periodo": "2026-08-01",
       "secao": "politica-monetaria"
@@ -57,7 +57,7 @@
       "unidade": "R$",
       "variacao": {
         "direcao": "alta",
-        "texto": "0.01"
+        "texto": "0,01"
       },
       "periodo": "2026-09-18",
       "secao": "politica-monetaria"
@@ -113,7 +113,7 @@
       "unidade": "% PIB",
       "variacao": {
         "direcao": "alta",
-        "texto": "0.15"
+        "texto": "0,15"
       },
       "periodo": "2026-06-01",
       "secao": "credito"
@@ -125,7 +125,7 @@
       "unidade": "% renda",
       "variacao": {
         "direcao": "baixa",
-        "texto": "0.08"
+        "texto": "0,08"
       },
       "periodo": "2026-06-01",
       "secao": "credito"

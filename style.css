@@ -275,6 +275,10 @@ a:hover {
   color: var(--cor-alta);
 }
 
+.card-variacao-neutro {
+  color: var(--cor-texto-suave);
+}
+
 .card-variacao-baixa {
   color: var(--cor-baixa);
 }

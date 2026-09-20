@@ -41,7 +41,7 @@ def buscar_serie_do_bcb(codigo: int) -> dict:
         "valor": atual["valor"],
         "data": atual["data"],
         "variacao": variacao,
-        "variacao_direcao": "alta" if variacao >= 0 else "baixa",
+            "variacao_direcao": "alta" if variacao > 0 else ("baixa" if variacao < 0 else "neutro"),
     }
 
 
@@ -69,7 +69,7 @@ def gerar_dados():
                 indicador["periodo"] = resultado["data"]
                 indicador["variacao"] = {
                     "direcao": resultado["variacao_direcao"],
-                    "texto": f"{abs(resultado['variacao']):.2f}",
+                    "texto": f"{abs(resultado['variacao']):.2f}".replace(".", ","),
                 }
                 encontrado = True
                 break

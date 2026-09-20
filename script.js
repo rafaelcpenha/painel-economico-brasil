@@ -25,7 +25,9 @@ function formatarNumero(valor) {
  * direcao: "alta" → ▲ | "baixa" → ▼
  */
 function setaDaVariacao(direcao) {
-    return direcao === "alta" ? "▲" : "▼";
+    if (direcao === "alta") return "▲";
+    if (direcao === "baixa") return "▼";
+    return "—"; // neutro
 }
 
 /**
