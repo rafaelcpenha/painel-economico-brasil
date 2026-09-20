@@ -296,37 +296,40 @@
       "secao": "setor-publico"
     },
     {
+      "id": "exportacoes",
       "titulo": "Exportações",
       "polaridade": "positiva",
-      "valor": 30.5,
+      "valor": 33.15780437,
       "unidade": "US$ bi",
       "variacao": {
         "direcao": "alta",
-        "texto": "4,2"
+        "texto": "3,60"
       },
       "periodo": "Ago/2026",
       "secao": "comercio"
     },
     {
+      "id": "importacoes",
       "titulo": "Importações",
       "polaridade": "negativa",
-      "valor": 22.1,
+      "valor": 25.7638621,
       "unidade": "US$ bi",
       "variacao": {
         "direcao": "alta",
-        "texto": "6,8"
+        "texto": "2,18"
       },
       "periodo": "Ago/2026",
       "secao": "comercio"
     },
     {
+      "id": "saldo-comercial",
       "titulo": "Saldo Comercial",
       "polaridade": "positiva",
-      "valor": 8.4,
+      "valor": 7.39394227,
       "unidade": "US$ bi",
       "variacao": {
-        "direcao": "baixa",
-        "texto": "1,1"
+        "direcao": "alta",
+        "texto": "1,42"
       },
       "periodo": "Ago/2026",
       "secao": "comercio"

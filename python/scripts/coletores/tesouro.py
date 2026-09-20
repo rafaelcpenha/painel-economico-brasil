@@ -4,7 +4,7 @@
 
 import requests
 from datetime import datetime
-from utils import data_tesouro_para_texto
+from utils import data_tesouro_para_texto, meses_atras
 
 
 URL_BASE = "https://apiapex.tesouro.gov.br/aria/v1/series-temporais/custom"
@@ -16,18 +16,7 @@ URL_BASE = "https://apiapex.tesouro.gov.br/aria/v1/series-temporais/custom"
 TEMA_RESULTADO_FISCAL = 10
 
 
-def _meses_atras(n: int) -> str:
-    """
-    Retorna o mês MM/AAAA que está N meses atrás do mês atual.
 
-    Usa aritmética de meses (ano * 12 + mês), evitando aproximações
-    imprecisas com dias.
-    """
-    hoje = datetime.today()
-    mes_total = hoje.year * 12 + (hoje.month - 1) - n
-    ano = mes_total // 12
-    mes = (mes_total % 12) + 1
-    return f"{mes:02d}/{ano}"
 
 
 def buscar_ultimos_valores(
@@ -44,7 +33,7 @@ def buscar_ultimos_valores(
     Valores vêm em R$ milhões; são convertidos para R$ bilhões (÷ 1000).
     Datas vêm em ISO 8601 com timestamp; são convertidas para "Mmm/AAAA".
     """
-    data_inicio = _meses_atras(meses_historico)
+    data_inicio = meses_atras(meses_historico)
 
     url = f"{URL_BASE}/resultado-fiscal"
     params = {

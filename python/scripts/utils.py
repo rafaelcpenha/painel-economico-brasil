@@ -51,3 +51,15 @@ def data_tesouro_para_texto(data_iso: str) -> str:
              "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
 
     return f"{meses[dt.month - 1]}/{dt.year}"
+
+def meses_atras(n: int) -> str:
+    """
+    Retorna o mês que está N meses atrás do mês atual, no formato MM/AAAA.
+
+    Usa aritmética de meses (ano * 12 + mês), evitando aproximações com dias.
+    """
+    hoje = datetime.today()
+    mes_total = hoje.year * 12 + (hoje.month - 1) - n
+    ano = mes_total // 12
+    mes = (mes_total % 12) + 1
+    return f"{mes:02d}/{ano}"

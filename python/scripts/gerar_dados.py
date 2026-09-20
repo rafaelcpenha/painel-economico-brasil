@@ -8,6 +8,7 @@ from pathlib import Path
 from coletores.bcb import buscar_ultimos_valores as buscar_bcb
 from coletores.ibge import buscar_ultimos_valores as buscar_ibge
 from coletores.tesouro import buscar_ultimos_valores as buscar_tesouro
+from coletores.comex import buscar_exportacoes, buscar_importacoes
 
 
 # --- Configuração ---
@@ -122,6 +123,64 @@ def buscar_serie_do_tesouro(codigo: str) -> dict:
         "variacao_direcao": "alta" if variacao > 0 else ("baixa" if variacao < 0 else "neutro"),
     }
 
+def _calcular_variacao_ano_a_ano(valores: list[dict]) -> dict:
+    """
+    Dado um histórico de valores mensais com campos periodo_iso, periodo_texto
+    e valor_bi, retorna o valor atual e a variação ano a ano.
+    """
+    if len(valores) < 2:
+        raise ValueError("Comex: menos de 2 períodos retornados.")
+
+    atual = valores[-1]
+    mes_atual = atual["periodo_iso"]  # "AAAA-MM"
+    ano_anterior = str(int(mes_atual[:4]) - 1)  # "AAAA" - 1
+    mes_alvo = ano_anterior + mes_atual[4:]  # "AAAA-MM" do ano anterior
+
+    anterior = None
+    for v in valores:
+        if v["periodo_iso"] == mes_alvo:
+            anterior = v
+            break
+
+    if anterior is None:
+        raise ValueError(f"Comex: não encontrado mesmo mês do ano anterior para {mes_atual}.")
+
+    variacao = atual["valor_bi"] - anterior["valor_bi"]
+    return {
+        "valor": atual["valor_bi"],
+        "data": atual["periodo_texto"],
+        "variacao": variacao,
+        "variacao_direcao": "alta" if variacao > 0 else ("baixa" if variacao < 0 else "neutro"),
+    }
+
+
+
+
+
+
+
+
+def calcular_saldo_comercial(exports: list[dict], imports: list[dict]) -> dict:
+    """
+    Calcula o saldo comercial (exportações − importações) a partir dos
+    dados já coletados, sem nova chamada à API.
+    """
+    meses_exp = {v["periodo_iso"]: v for v in exports}
+    meses_imp = {v["periodo_iso"]: v for v in imports}
+
+    meses_comuns = sorted(set(meses_exp.keys()) & set(meses_imp.keys()))
+
+    valores_saldo = []
+    for mes in meses_comuns:
+        saldo = meses_exp[mes]["valor_bi"] - meses_imp[mes]["valor_bi"]
+        valores_saldo.append({
+            "periodo_iso": mes,
+            "periodo_texto": meses_exp[mes]["periodo_texto"],
+            "valor_bi": saldo,
+        })
+
+    return _calcular_variacao_ano_a_ano(valores_saldo)
+
 def atualizar_indicador(dados: dict, id_indicador: str, resultado: dict, unidade: str) -> bool:
     """
     Atualiza um indicador no dicionário `dados` com o resultado coletado.
@@ -138,6 +197,7 @@ def atualizar_indicador(dados: dict, id_indicador: str, resultado: dict, unidade
             }
             return True
     return False
+
 
 
 def gerar_dados():
@@ -174,6 +234,29 @@ def gerar_dados():
 
         if not atualizar_indicador(dados, id_indicador, resultado, unidade):
             print(f"  ⚠️  Indicador '{id_indicador}' não encontrado no dados.json.")
+
+    # --- Coleta do Comex Stat ---
+    print("\n🔎 Coletando dados do Comex Stat...")
+
+    # Coletamos exportações e importações brutas (sem processar)
+    exports_brutos = buscar_exportacoes()
+    imports_brutos = buscar_importacoes()
+
+    # Processamos exportações e importações
+    exp_processadas = _calcular_variacao_ano_a_ano(exports_brutos)
+    imp_processadas = _calcular_variacao_ano_a_ano(imports_brutos)
+
+    # Atualizamos os dois indicadores
+    for id_ind, resultado in [("exportacoes", exp_processadas), ("importacoes", imp_processadas)]:
+        print(f"  {id_ind}: {resultado['valor']:.2f} ({resultado['data']})")
+        if not atualizar_indicador(dados, id_ind, resultado, "US$ bi"):
+            print(f"  ⚠️  Indicador '{id_ind}' não encontrado no dados.json.")
+
+    # Calculamos o saldo comercial a partir dos dados já coletados
+    saldo = calcular_saldo_comercial(exports_brutos, imports_brutos)
+    print(f"  saldo-comercial: {saldo['valor']:.2f} ({saldo['data']})")
+    if not atualizar_indicador(dados, "saldo-comercial", saldo, "US$ bi"):
+        print(f"  ⚠️  Indicador 'saldo-comercial' não encontrado no dados.json.")
 
     # Grava o arquivo atualizado
     with open(CAMINHO_DADOS, "w", encoding="utf-8") as f:
