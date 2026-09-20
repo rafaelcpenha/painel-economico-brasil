@@ -29,3 +29,15 @@ data/raw/
 
 # ---------- Logs ----------
 *.log
+
+# ---------- Dados brutos (não versionar) ----------
+data/brutos/
+data/raw/
+*.csv.gz
+*.parquet
+
+# ---------- Ambientes Python ----------
+.venv/
+venv/
+env/
+.ipynb_checkpoints/

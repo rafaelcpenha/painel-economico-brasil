@@ -42,7 +42,7 @@ def buscar_ultimos_valores(
         "data_inicio": data_inicio,
     }
 
-    resposta = requests.get(url, params=params, timeout=15)
+    resposta = requests.get(url, params=params, timeout=20)
     resposta.raise_for_status()
 
     dados_brutos = resposta.json()

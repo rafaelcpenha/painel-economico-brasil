@@ -21,7 +21,7 @@ def buscar_ultimos_valores(codigo_serie: int, quantidade: int = 2) -> list[dict]
     """
     url = f"{URL_BASE}{codigo_serie}/dados/ultimos/{quantidade}?formato=json"
 
-    resposta = requests.get(url, timeout=10)
+    resposta = requests.get(url, timeout=20)
     resposta.raise_for_status()  # lança exceção se status != 200
 
     dados_brutos = resposta.json()
