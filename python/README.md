@@ -1,4 +1,4 @@
-````markdown
+
 # Módulo Python — Painel Econômico Brasil
 
 Este diretório contém o código Python responsável por **coletar, tratar e
