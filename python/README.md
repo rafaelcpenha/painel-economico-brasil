@@ -1,57 +1,106 @@
+````markdown
 # Módulo Python — Painel Econômico Brasil
 
 Este diretório contém o código Python responsável por **coletar, tratar e
-gerar** o arquivo `data/dados.json` que o site consome.
+gerar** o arquivo `data/dados.json` consumido pelo site.
 
 ## Estrutura
-```
+
+```text
 python/
-├── notebooks/ # Exploração interativa (Jupyter)
+├── notebooks/                         # Exploração interativa (Jupyter)
+│   ├── exploracao-bcb.ipynb           # Exploração da API SGS do BCB
+│   └── exploracao-ibge.ipynb          # Exploração da API SIDRA do IBGE
 ├── scripts/
-│ ├── coletores/ # Um módulo por fonte de dados
-│ │ ├── init.py
-│ │ ├── bcb.py # (a criar) Banco Central — SGS
-│ │ ├── ibge.py # (a criar) IBGE — SIDRA / PNAD
-│ │ ├── tesouro.py # (a criar) Tesouro Nacional
-│ │ └── comex.py # (a criar) Comex Stat — MDIC
-│ ├── gerar_dados.py # (a criar) Script principal
-│ └── utils.py # (a criar) Funções auxiliares
-└── README.md # Este arquivo
-```
+│   ├── gerar_dados.py                 # Script principal — orquestra a coleta
+│   ├── utils.py                        # Funções auxiliares
+│   └── coletores/                      # Um módulo por fonte de dados
+│       ├── __init__.py
+│       ├── bcb.py                      # Banco Central — SGS
+│       └── ibge.py                     # IBGE — SIDRA
+└── README.md                           # Este arquivo
+````
+
 ## Ambiente
 
-O código Python deste projeto requer o ambiente Conda `painel-economico-brasil`.
+O código Python deste projeto requer o ambiente Conda
+`painel-economico-brasil`.
 
-Para ativar:
+### Ativação
 
-```
+```bash
 conda activate painel-economico-brasil
 ```
-Bibliotecas instaladas: requests, pandas, jupyter.
 
+### Bibliotecas
 
-Como rodar (futuro)
+As principais bibliotecas utilizadas são:
 
+* `requests`
+* `pandas`
+* `jupyter`
+
+## Como rodar
+
+> **Importante:** o script deve ser executado de dentro de
+> `python/scripts/`, para que os imports relativos entre `utils` e
+> `coletores` funcionem corretamente.
+
+No terminal:
+
+```bash
+cd python/scripts
+conda activate painel-economico-brasil
+python gerar_dados.py
 ```
-python python/scripts/gerar_dados.py
-```
-Isso gera/atualiza data/dados.json com dados reais das APIs oficiais.
 
+### Saída esperada
 
----
+O script deve apresentar logs de coleta por fonte, seguidos da confirmação
+de gravação do arquivo `data/dados.json`.
 
-## 3. Rodar tudo de novo para confirmar
+## Fontes integradas
 
-Depois das mudanças, verifique:
+| Fonte               | Módulo              | Status          |
+| ------------------- | ------------------- | --------------- |
+| Banco Central (SGS) | `coletores/bcb.py`  | ✅ 5 séries      |
+| IBGE (SIDRA)        | `coletores/ibge.py` | ✅ 10 categorias |
 
-**Passo A — Testar o site no Live Server:**
-- Os 16 cards continuam carregando?
-- O console do DevTools não tem erro?
+## Fontes planejadas
 
-Se sim, o `fetch("data/dados.json")` está correto.
+| Fonte                | Módulo futuro          |
+| -------------------- | ---------------------- |
+| Tesouro Nacional     | `coletores/tesouro.py` |
+| Comex Stat (MDIC)    | `coletores/comex.py`   |
+| IBGE — PNAD Contínua | `coletores/pnad.py`    |
 
-**Passo B — Confirmar o estado do Git:**
+## Notas técnicas
 
-```
-git status
+### Formato de datas
+
+O BCB entrega datas no formato `DD/MM/AAAA`, enquanto o IBGE entrega
+períodos trimestrais no formato `AAAAQQ`.
+
+Ambos são convertidos para formatos legíveis antes de serem gravados no
+JSON.
+
+### Valores numéricos
+
+Os valores numéricos são sempre armazenados como `float` no JSON, mesmo
+quando a API de origem os entrega como `string`.
+
+### Variações
+
+As variações são calculadas pela diferença entre o último e o penúltimo
+valor da série.
+
+## Verificação
+
+Após qualquer alteração no código, execute o script para verificar se o
+pipeline continua funcionando normalmente:
+
+```bash
+cd python/scripts
+conda activate painel-economico-brasil
+python gerar_dados.py
 ```
