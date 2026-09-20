@@ -24,3 +24,15 @@ def valor_bcb_para_float(valor_bcb: str) -> float:
         "13.75" → 13.75
     """
     return float(valor_bcb)
+
+def periodo_ibge_para_texto(periodo_ibge: str) -> str:
+    """
+    Converte período trimestral do IBGE (formato AAAAQQ) para texto legível.
+
+    Exemplo:
+        "202602" → "2º tri/2026"
+        "202503" → "3º tri/2025"
+    """
+    ano = periodo_ibge[:4]
+    trimestre = int(periodo_ibge[4:])
+    return f"{trimestre}º tri/{ano}"

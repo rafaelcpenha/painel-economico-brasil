@@ -80,11 +80,11 @@
       "id": "pib-mercado",
       "titulo": "PIB a preços de mercado",
       "subsecao": "pib-geral",
-      "valor": 2.1,
+      "valor": 2.0,
       "unidade": "% a.a.",
       "variacao": {
         "direcao": "alta",
-        "texto": "0,30 p.p."
+        "texto": "0,20"
       },
       "periodo": "2º tri/2026",
       "secao": "atividade"
@@ -93,11 +93,11 @@
       "id": "consumo-familias",
       "titulo": "Consumo das Famílias",
       "subsecao": "otica-demanda",
-      "valor": 3.4,
+      "valor": 0.5,
       "unidade": "% a.a.",
       "variacao": {
-        "direcao": "alta",
-        "texto": "0,10 p.p."
+        "direcao": "baixa",
+        "texto": "1,20"
       },
       "periodo": "2º tri/2026",
       "secao": "atividade"
@@ -119,11 +119,11 @@
       "id": "fbcf",
       "titulo": "Formação Bruta de Capital Fixo (FBCF)",
       "subsecao": "otica-demanda",
-      "valor": 17.2,
-      "unidade": "% PIB",
+      "valor": 1.4,
+      "unidade": "% a.a.",
       "variacao": {
-        "direcao": "baixa",
-        "texto": "0,20 p.p."
+        "direcao": "alta",
+        "texto": "2,80"
       },
       "periodo": "2º tri/2026",
       "secao": "atividade"
@@ -184,11 +184,11 @@
       "id": "servicos",
       "titulo": "Serviços",
       "subsecao": "otica-oferta",
-      "valor": 1.9,
+      "valor": 1.5,
       "unidade": "% a.a.",
       "variacao": {
-        "direcao": "alta",
-        "texto": "0,10 p.p."
+        "direcao": "baixa",
+        "texto": "0,60"
       },
       "periodo": "2º tri/2026",
       "secao": "atividade"
