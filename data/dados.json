@@ -70,13 +70,13 @@
       "id": "cambio",
       "titulo": "Câmbio (USD/BRL)",
       "polaridade": "negativa",
-      "valor": 5.1575,
+      "valor": 5.1117,
       "unidade": "R$",
       "variacao": {
-        "direcao": "alta",
-        "texto": "0,01"
+        "direcao": "baixa",
+        "texto": "0,05"
       },
-      "periodo": "2026-09-18",
+      "periodo": "2026-09-21",
       "secao": "politica-monetaria"
     },
     {
