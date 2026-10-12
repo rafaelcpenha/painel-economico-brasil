@@ -57,26 +57,26 @@
       "id": "ipca",
       "titulo": "IPCA (12 meses)",
       "polaridade": "negativa",
-      "valor": 4.22,
+      "valor": 4.58,
       "unidade": "%",
       "variacao": {
-        "direcao": "baixa",
-        "texto": "0,22"
+        "direcao": "alta",
+        "texto": "0,36"
       },
-      "periodo": "2026-08-01",
+      "periodo": "2026-09-01",
       "secao": "politica-monetaria"
     },
     {
       "id": "cambio",
       "titulo": "Câmbio (USD/BRL)",
       "polaridade": "negativa",
-      "valor": 5.2132,
+      "valor": 4.9892,
       "unidade": "R$",
       "variacao": {
-        "direcao": "alta",
-        "texto": "0,01"
+        "direcao": "baixa",
+        "texto": "0,02"
       },
-      "periodo": "2026-09-28",
+      "periodo": "2026-10-09",
       "secao": "politica-monetaria"
     },
     {
@@ -223,26 +223,26 @@
       "id": "credito",
       "titulo": "Crédito Total",
       "polaridade": "positiva",
-      "valor": 55.75,
+      "valor": 55.53,
       "unidade": "% PIB",
       "variacao": {
         "direcao": "alta",
-        "texto": "0,15"
+        "texto": "0,09"
       },
-      "periodo": "2026-06-01",
+      "periodo": "2026-07-01",
       "secao": "credito"
     },
     {
       "id": "endividamento",
       "titulo": "Endividamento das Famílias",
       "polaridade": "negativa",
-      "valor": 49.75,
+      "valor": 49.86,
       "unidade": "% renda",
       "variacao": {
-        "direcao": "baixa",
-        "texto": "0,08"
+        "direcao": "alta",
+        "texto": "0,21"
       },
-      "periodo": "2026-06-01",
+      "periodo": "2026-07-01",
       "secao": "credito"
     },
     {
@@ -273,65 +273,65 @@
       "id": "gasto-publico",
       "titulo": "Gasto Público (União)",
       "polaridade": "negativa",
-      "valor": 215.52202237159554,
+      "valor": 201.46320482702555,
       "unidade": "R$ bi",
       "variacao": {
-        "direcao": "baixa",
-        "texto": "44,79 R$ bi (-17,2%)"
+        "direcao": "alta",
+        "texto": "11,71 R$ bi (+6,2%)"
       },
-      "periodo": "Jul/2026",
+      "periodo": "Ago/2026",
       "secao": "setor-publico"
     },
     {
       "id": "resultado-primario",
       "titulo": "Resultado Primário",
       "polaridade": "positiva",
-      "valor": 10.783432184096426,
+      "valor": -13.584945058567712,
       "unidade": "R$ bi",
       "variacao": {
         "direcao": "alta",
-        "texto": "69,85 R$ bi"
+        "texto": "1,96 R$ bi"
       },
-      "periodo": "Jul/2026",
+      "periodo": "Ago/2026",
       "secao": "setor-publico"
     },
     {
       "id": "exportacoes",
       "titulo": "Exportações",
       "polaridade": "positiva",
-      "valor": 33.15780437,
+      "valor": 34.418070076,
       "unidade": "US$ bi",
       "variacao": {
         "direcao": "alta",
-        "texto": "3,60 US$ bi (+12,2%)"
+        "texto": "3,93 US$ bi (+12,9%)"
       },
-      "periodo": "Ago/2026",
+      "periodo": "Set/2026",
       "secao": "comercio"
     },
     {
       "id": "importacoes",
       "titulo": "Importações",
       "polaridade": "negativa",
-      "valor": 25.7638621,
+      "valor": 26.677510096,
       "unidade": "US$ bi",
       "variacao": {
-        "direcao": "alta",
-        "texto": "2,18 US$ bi (+9,2%)"
+        "direcao": "baixa",
+        "texto": "0,67 US$ bi (-2,4%)"
       },
-      "periodo": "Ago/2026",
+      "periodo": "Set/2026",
       "secao": "comercio"
     },
     {
       "id": "saldo-comercial",
       "titulo": "Saldo Comercial",
       "polaridade": "positiva",
-      "valor": 7.39394227,
+      "valor": 7.7405599800000005,
       "unidade": "US$ bi",
       "variacao": {
         "direcao": "alta",
-        "texto": "1,42 US$ bi (+23,8%)"
+        "texto": "4,60 US$ bi (+146,4%)"
       },
-      "periodo": "Ago/2026",
+      "periodo": "Set/2026",
       "secao": "comercio"
     }
   ]
